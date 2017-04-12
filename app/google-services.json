@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "192563360275",
+    "firebase_url": "https://mykart-402c8.firebaseio.com",
+    "project_id": "mykart-402c8",
+    "storage_bucket": "mykart-402c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192563360275:android:b08d899d9d6820a1",
+        "android_client_info": {
+          "package_name": "com.imbyou.pavan.mykart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192563360275-dal8gr767ovdfmii54lftp8vn3aco8la.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMyRDT3r7zs8gLJzymPnM_x5IMX_Nr1Is"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
