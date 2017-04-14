@@ -4,11 +4,11 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="#FFC300"
+    android:background="#000000"
     android:minHeight="?attr/actionBarSize"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:theme="@style/ThemeOverlay.AppCompat.Dark"
-    app:titleTextColor="@android:color/white"
+    app:titleTextColor="#ffffff"
     >
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#C70039" />
+        android:textColor="#ffffff" />
 
 </android.support.v7.widget.Toolbar>
 

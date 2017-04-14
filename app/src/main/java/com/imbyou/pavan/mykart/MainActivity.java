@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     private TextView mToolbarTitleTextView;
     private RecyclerView mRecycler;
-    private LinearLayoutManager mManager;
+    private GridLayoutManager mManager;
     //private TextView mNavUserNameTextView, mNavUserEmailTextView;
     private RelativeLayout mRelativeLayout;
    // private Preferences mPreferences;
@@ -68,9 +69,9 @@ public class MainActivity extends AppCompatActivity
         //mProfileImage = (CircleImageView) header.findViewById(R.id.profile_image);
 
         mRecycler.setHasFixedSize(true);
-        mManager = new LinearLayoutManager(this);
+        mManager = new GridLayoutManager(this, 2);
         mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
+        //mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
        /* PAWAN: If you want to add animation to the recycler view just add these below three lines
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity
 
         JazzyRecyclerViewScrollListener jazzyScrollListener = new JazzyRecyclerViewScrollListener();
         mRecycler.setOnScrollListener(jazzyScrollListener);
-        jazzyScrollListener.setTransitionEffect(1);
+        jazzyScrollListener.setTransitionEffect(11);
         //PAWAN: Channge this numeric "2" to anything to change the animation for recyler view
         //jazzyScrollListener.setTransitionEffect(2);
         //jazzyScrollListener.setTransitionEffect(1);
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         Query postsQuery = myRef;
         mAdapter = new FirebaseRecyclerAdapter<CategoriesModel, CategoriesViewHolder>
                 (CategoriesModel.class,
-                        R.layout.item_categories,
+                        R.layout.item_grid_categories,
                         CategoriesViewHolder.class, postsQuery) {
             @Override
             protected void populateViewHolder(CategoriesViewHolder viewHolder,
@@ -192,6 +193,10 @@ public class MainActivity extends AppCompatActivity
                                     i.putExtra("from_workouts", model.getName());
 
                                     startActivity(i);*/
+
+                                    Intent i = new Intent(MainActivity.this, FurnitureActivity.class);
+                                    i.putExtra("from_main_activity", model.getName());
+                                    startActivity(i);
 
 
 
