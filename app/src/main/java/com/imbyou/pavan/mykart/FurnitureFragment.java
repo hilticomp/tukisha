@@ -18,6 +18,10 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.imbyou.pavan.mykart.model.CategoriesModel;
+import com.imbyou.pavan.mykart.model.CategoryTypesModel;
+import com.imbyou.pavan.mykart.viewholder.CategoriesViewHolder;
+import com.imbyou.pavan.mykart.viewholder.CategoryTypesViewHolder;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
 
 /**
@@ -30,20 +34,23 @@ public class FurnitureFragment extends Fragment {
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    private FirebaseDatabase database;
+
     //private Preferences mPreferences;
 
     String imbyou;
+    String category;
 
-    //private FirebaseRecyclerAdapter<WorkoutTypesModel, WorkoutDeleteViewHolder> mAdapter;
+
+    private FirebaseDatabase database;
+    private FirebaseRecyclerAdapter<CategoryTypesModel, CategoryTypesViewHolder> mAdapter;
 
 
 
 
     @SuppressLint("ValidFragment")
-    public FurnitureFragment(String data) {
+    public FurnitureFragment(String category, String data) {
         // Required empty public constructor
-
+        this.category = category;
         this.imbyou = data;
     }
 
@@ -96,13 +103,73 @@ public class FurnitureFragment extends Fragment {
         return view;
 
 
+
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //getMyConnections();
+
+
+        getMyCategories(imbyou);
+    }
+
+    private void getMyCategories(String s) {
+
+        // myKey = new Preferences().getUserKey(MyConnectionsActivity.this);
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("category_types");
+        Query postsQuery = myRef.child(category).child(s);
+        //Query postsQuery = myRef.Child(imbyou);
+        mAdapter = new FirebaseRecyclerAdapter<CategoryTypesModel, CategoryTypesViewHolder>
+                (CategoryTypesModel.class,
+                        R.layout.item_product,
+                        CategoryTypesViewHolder.class, postsQuery) {
+            @Override
+            protected void populateViewHolder(CategoryTypesViewHolder viewHolder,
+                                              final CategoryTypesModel model, int position) {
+                //final DatabaseReference postRef = getRef(position);
+                //inal String friend_key = postRef.getKey();
+
+                //viewHolder.bindToResponse(MyConnectionsActivity.this, model);
+
+                if (model != null) {
+                    viewHolder.bindtoCategoriesTypes(getActivity(), model,
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                     Toast.makeText(getActivity(), "You Clicked : ",
+                                            Toast.LENGTH_SHORT).show();
+
+                                  /*  PAWAN: If you click abs to need to get abs exercise, similiarly if you
+                                    click tricep to need to get tricep and so on, in order to achieve this
+                                            you need to send the name like "model.getName()" from this activity
+                                            and receive it in "WorkoutTypesActivity" and pass that received intent
+                                            in query of firebase line number 96*/
+
+                                    /*Intent i = new Intent(MainActivity.this, CategoriesTypesActivity.class);
+                                    i.putExtra("from_workouts", model.getName());
+
+                                    startActivity(i);*/
+
+                                    /*Intent i = new Intent(MainActivity.this, FurnitureActivity.class);
+                                    i.putExtra("from_main_activity", model.getName());
+                                    startActivity(i);*/
+                                    Intent i2 = new Intent(getActivity(), DetailsActivity.class);
+                                    i2.putExtra("sampleObject", model);
+                                    startActivity(i2);
+
+
+
+                                }
+                            });
+                }
+            }
+        };
+
+        mRecycler.setAdapter(mAdapter);
     }
 
 

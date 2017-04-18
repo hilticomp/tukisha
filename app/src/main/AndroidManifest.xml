@@ -22,6 +22,9 @@
 
         <activity android:name=".FurnitureActivity">
         </activity>
+
+        <activity android:name=".DetailsActivity">
+        </activity>
     </application>
 
 </manifest>

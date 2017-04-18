@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.imbyou.pavan.mykart.R;
 import com.imbyou.pavan.mykart.model.CategoriesModel;
+import com.imbyou.pavan.mykart.model.CategoryTypesModel;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -41,6 +42,8 @@ public class CategoriesViewHolder extends RecyclerView.ViewHolder {
         Picasso.with(context).load(post.getImgurl()).fit().centerCrop().into(categories_imageView);
 
     }
+
+
 
 
 }

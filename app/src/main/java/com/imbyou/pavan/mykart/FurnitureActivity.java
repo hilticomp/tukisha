@@ -23,14 +23,18 @@ public class FurnitureActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
+
+    /* PAWAN IMPORTANT: Whatever the name you gave it in firebase the names here
+                 should be the same in this below cases which are in green color.*/
+
     static CharSequence[] furniture = new String[]{"Sofas","Beds","Dining", "Wardrobes", "Bookshelves"};
-    static CharSequence[] electronics = new String[]{"Laptops","Mobiles","AC", "Refrigerator", "Printers"};
-    static CharSequence[] grocey_staples = new String[]{"Pulses","Rice","Dry Fruits and Nuts", "Salt and Sugar", "Spices"};
-    static CharSequence[] fruits_vegetables = new String[]{"All vegetables","All fruits","Exotics", "Imported Fruits", "Sprouts"};
-    static CharSequence[] beauty_health = new String[]{"Fragrance","Health care devices","Mens grooming", "Diet and Nutrition", "Shaving and Hair Removal"};
-    static CharSequence[] clothing_accessories = new String[]{"Womens Clothing","Mens Clothing","Kids clothing", "Footwear", "Watches"};
-    static CharSequence[] toys_babyproducts = new String[]{"Soft Toys","Puzzles","Die Cast and Toy Vehicles", "Diapers", "Strollers and Prams"};
-    static CharSequence[] books = new String[]{"Telugu","English","Hindi", "Marati", "Bengali"};
+    static CharSequence[] electronics = new String[]{"Laptops","Mobiles","AC", "Refrigrator", "Printers"};
+    static CharSequence[] grocey_staples = new String[]{"Pulses","Cookies","Dry Fruits and Nuts", "Ghee and Vanaspathi", "Spices"};
+    static CharSequence[] fruits_vegetables = new String[]{"All Vegetables","All Fruits","Exotics", "Imported Fruits", "Sprouts"};
+    static CharSequence[] beauty_health = new String[]{"Fragrance","Health Care and Devices","Mens grooming", "Diet and Nutrition", "Shaving and Hair Removal"};
+    static CharSequence[] clothing_accessories = new String[]{"Womens Clothing","Mens Clothing","Kids Clothing", "Footwear", "Watches"};
+    static CharSequence[] toys_babyproducts = new String[]{"Diapers","Die Cast and Toy Vehicles","Puzzles", "Soft Toys", "Strollers and Prams"};
+    static CharSequence[] books = new String[]{"Telugu","English","Hindi", "Marathi", "Tamil"};
 
 
     private static String message;
@@ -82,30 +86,32 @@ public class FurnitureActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int i) {
-            switch (i) {
+
+           return new FurnitureFragment(message,shopDataTabs(message, i).toString());
+           /* switch (i) {
                 case 0:
                     // The first section of the app is the most interesting -- it offers
                     // a launchpad into the other demonstrations in this example application.
-                    return new FurnitureFragment("Sofas");
+                    return new FurnitureFragment(message,"Sofas");
                 case 1:
                     // The first section of the app is the most interesting -- it offers
                     // a launchpad into the other demonstrations in this example application.
-                    return new FurnitureFragment("Beds");
+                    return new FurnitureFragment(message,"Beds");
 
                 case 2:
                     // The first section of the app is the most interesting -- it offers
                     // a launchpad into the other demonstrations in this example application.
-                    return new FurnitureFragment("Dining");
+                    return new FurnitureFragment(message,"Dining");
 
                 case 3:
                     // The first section of the app is the most interesting -- it offers
                     // a launchpad into the other demonstrations in this example application.
-                    return new FurnitureFragment("Wardrobes");
+                    return new FurnitureFragment(message,"Wardrobes");
 
                 case 4:
                     // The first section of the app is the most interesting -- it offers
                     // a launchpad into the other demonstrations in this example application.
-                    return new FurnitureFragment("Bookshelves");
+                    return new FurnitureFragment(message,"Bookshelves");
 
 
 
@@ -114,8 +120,10 @@ public class FurnitureActivity extends AppCompatActivity {
 
                     return null;
             }
-
+*/
         }
+
+
 
 
 
@@ -124,11 +132,17 @@ public class FurnitureActivity extends AppCompatActivity {
             return 5;
         }
 
+        /*public CharSequence getSubCategories(int position){
+
+
+        }*/
+
 
         public CharSequence shopDataTabs(String name, int position){
             switch (name){
 
-                //PAWAN IMPORTANT: Whatever the name you gave it in firebase the names here should be the same in this below cases.
+               /* PAWAN IMPORTANT: Whatever the name you gave it in firebase the names here
+                 should be the same in this below cases which are in green color.*/
 
                 case "Furniture":
 
@@ -155,7 +169,7 @@ public class FurnitureActivity extends AppCompatActivity {
 
                     return clothing_accessories[position];
 
-                case "Toys and baby products":
+                case "Toys and Baby Products":
 
                     return toys_babyproducts[position];
 

@@ -52,7 +52,7 @@
                 android:freezesText="true"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
-                android:singleLine="true"
+
                 android:text="Item Name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp" />
