@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -104,13 +106,11 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
 
 
 
-  /*  @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_checkout, menu);
         return true;
     }
-*/
 
 
     @Override
@@ -123,7 +123,16 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
 
+            case R.id.menu_checkout:
 
+             /*PAWAN: Whenever you want to use the dialog box with checked list items Create a separate
+                class as we did in this application like "WeekdayDialogFragment" and the use the
+                    below two line to call that class in which ever class you want as we did in this class when the
+                    menu item "+" was clicked in our project we needed that dialog so we are calling it on clicking it
+                    by using the below two lines 162 and 163 */
+
+                Intent i = new Intent(OrderSummaryCartActivity.this, CheckoutActivity.class);
+                startActivity(i);
 
 
             default:
@@ -133,7 +142,6 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
 
 
     }
-
 
 
     private void configureToolbar() {
@@ -181,8 +189,8 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
 
-                                    /*Toast.makeText(WorkoutTypesActivity.this, "You Clicked : ",
-                                            Toast.LENGTH_SHORT).show();*/
+                                    Toast.makeText(OrderSummaryCartActivity.this, "You Clicked : ",
+                                            Toast.LENGTH_SHORT).show();
 
                                    /* Intent i = new Intent(WorkoutTypesActivity.this, DetailsActivity.class);
                                     i.putExtra("from_workouts_types", model.getVidurl());

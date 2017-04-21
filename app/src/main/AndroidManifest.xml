@@ -28,6 +28,9 @@
 
         <activity android:name=".OrderSummaryCartActivity">
         </activity>
+
+        <activity android:name=".CheckoutActivity">
+        </activity>
     </application>
 
 </manifest>
