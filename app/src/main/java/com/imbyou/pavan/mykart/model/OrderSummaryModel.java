@@ -1,12 +1,10 @@
 package com.imbyou.pavan.mykart.model;
 
-import java.io.Serializable;
-
 /**
- * Created by Lenovo on 17-Apr-17.
+ * Created by Lenovo on 19-Apr-17.
  */
 
-public class CategoryTypesModel implements Serializable {
+public class OrderSummaryModel {
 
     private String description;
     private String name;
@@ -15,8 +13,6 @@ public class CategoryTypesModel implements Serializable {
     private String type;
     private String quantity;
     private String total;
-    private String random;
-
 
     public String getDescription() {
         return description;
@@ -73,12 +69,5 @@ public class CategoryTypesModel implements Serializable {
     public void setTotal(String total) {
         this.total = total;
     }
-
-    public String getRandom() {
-        return random;
-    }
-
-    public void setRandom(String random) {
-        this.random = random;
-    }
 }
+
