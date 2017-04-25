@@ -9,26 +9,27 @@
     <include layout="@layout/view_toolbar" />
 
     <TextView
-        android:id="@+id/total"
+        android:id="@+id/finaltotal"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#000000"
+        android:background="#FFC300"
         android:gravity="center"
-        android:text="Your Total is Rupees: 2525"
-        android:textColor="#FFC300"
+        android:text=""
+        android:textColor="#C70039"
         android:textSize="25sp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/thankyou"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
+        android:background="#C70039"
         android:gravity="center"
         android:text="@string/thank_you"
         android:textColor="#FFC300"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
 </LinearLayout>
+

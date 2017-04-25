@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by Lenovo on 21-Apr-17.
  */
@@ -17,11 +19,34 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextView mToolbarTitleTextView;
     private Toolbar toolbar;
 
+    /*Here i am having all the items "Total" of our order summary activity in "pawan" and i am setting
+    it to the text view of "final total" text view in this activity*/
+
+    private static ArrayList<String> pawan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            pawan = bundle.getStringArrayList("from_order_summary_activity");
+        }
+
+        TextView finalItemsTotal = (TextView)findViewById(R.id.finaltotal);
+
+
+        int total = 0;
+
+        for(int i =0; i< pawan.size(); i++)
+        {
+
+            total = total+Integer.parseInt(pawan.get(i));
+        }
+                //TODO
+        finalItemsTotal.setText("Grand Total :" + " " + String.valueOf(total));
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -29,6 +54,7 @@ public class CheckoutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         configureToolbar();
+
         if (mToolbarTitleTextView != null) {
             //Setting name for toolbar
             mToolbarTitleTextView.setText("Thank You");
@@ -77,11 +103,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
             case R.id.menu_signout:
 
-             /*PAWAN: Whenever you want to use the dialog box with checked list items Create a separate
-                class as we did in this application like "WeekdayDialogFragment" and the use the
-                    below two line to call that class in which ever class you want as we did in this class when the
-                    menu item "+" was clicked in our project we needed that dialog so we are calling it on clicking it
-                    by using the below two lines 162 and 163 */
+
 
                 Toast.makeText(CheckoutActivity.this, "Logged Out", Toast.LENGTH_LONG).show();
                 return true;

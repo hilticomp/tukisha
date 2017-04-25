@@ -22,6 +22,8 @@ import com.imbyou.pavan.mykart.model.OrderSummaryModel;
 import com.imbyou.pavan.mykart.viewholder.CartViewHolder;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
 
+import java.util.ArrayList;
+
 /**
  * Created by Lenovo on 19-Apr-17.
  */
@@ -41,6 +43,7 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
 
 
     private FirebaseRecyclerAdapter<OrderSummaryModel, CartViewHolder> mAdapter;
+    ArrayList<String> listTotal = new ArrayList<String>();
 
 
     @Override
@@ -130,11 +133,13 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
                     below two line to call that class in which ever class you want as we did in this class when the
                     menu item "+" was clicked in our project we needed that dialog so we are calling it on clicking it
                     by using the below two lines 162 and 163 */
+                Intent in = new Intent(OrderSummaryCartActivity.this, CheckoutActivity.class);
+                in.putStringArrayListExtra("from_order_summary_activity", listTotal);
+                startActivity(in);
+                /*Intent i = new Intent(OrderSummaryCartActivity.this, CheckoutActivity.class);
+                startActivity(i);*/
 
-                Intent i = new Intent(OrderSummaryCartActivity.this, CheckoutActivity.class);
-                startActivity(i);
-
-
+            return  true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -165,6 +170,7 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
     // String myKey;
     /*PAWAN: only the first three lines i.e,. the queries changes in getMyConnections() and searchConnection()
     methods, remaining everthing remains same, have a  close look */
+    ArrayList<OrderSummaryModel> arrayModel = new ArrayList();
 
     private void getMyCartList() {
 
@@ -182,8 +188,13 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
                 //inal String friend_key = postRef.getKey();
 
                 //viewHolder.bindToResponse(MyConnectionsActivity.this, model);
-
+        //arrayModel.add(model);
                 if (model != null) {
+
+                    String rupees = model.getRs().replace("Rs: ","");
+                    int total = Integer.parseInt(model.getQuantity()) * Integer.parseInt(rupees);
+                    listTotal.add(String.valueOf (total));
+
                     viewHolder.bindtoCartTypes(OrderSummaryCartActivity.this, model,
                             new View.OnClickListener() {
                                 @Override
@@ -232,6 +243,15 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
         };
 
         mRecycler.setAdapter(mAdapter);
+
+
+        for(int i =0; i< arrayModel.size(); i++){
+            String rupees = arrayModel.get(i).getRs().replace("Rs: ","");
+            int total = Integer.parseInt(arrayModel.get(i).getQuantity()) * Integer.parseInt(rupees);
+            listTotal.add(String.valueOf (total));
+
+
+        }
     }
 
 

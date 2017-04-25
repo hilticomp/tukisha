@@ -55,7 +55,6 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
 
         int d = Integer.parseInt(post.getQuantity()) * Integer.parseInt(rupees);
-
         mTotal.setText("Total:" + " " + String.valueOf(d));
 
 
