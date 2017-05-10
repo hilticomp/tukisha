@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -18,9 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.imbyou.pavan.mykart.model.CategoriesModel;
 import com.imbyou.pavan.mykart.model.CategoryTypesModel;
-import com.imbyou.pavan.mykart.viewholder.CategoriesViewHolder;
 import com.imbyou.pavan.mykart.viewholder.CategoryTypesViewHolder;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
 
@@ -73,7 +69,7 @@ public class FurnitureFragment extends Fragment {
 
 
         /* PAWAN: If you want to add animation to the recycler view just add these below three lines
-        in which ever activity you want which has a recycler view after importing the library.*/
+        in whichever activity you want which has a recycler view, after importing the library.*/
 
         JazzyRecyclerViewScrollListener jazzyScrollListener = new JazzyRecyclerViewScrollListener();
         mRecycler.setOnScrollListener(jazzyScrollListener);
@@ -171,13 +167,6 @@ public class FurnitureFragment extends Fragment {
 
         mRecycler.setAdapter(mAdapter);
     }
-
-
-
-
-
-
-
 }
 
 

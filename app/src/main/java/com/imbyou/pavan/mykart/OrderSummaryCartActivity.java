@@ -17,9 +17,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.imbyou.pavan.mykart.model.CategoryTypesModel;
 import com.imbyou.pavan.mykart.model.OrderSummaryModel;
-import com.imbyou.pavan.mykart.viewholder.CartViewHolder;
+import com.imbyou.pavan.mykart.viewholder.OrderSummaryViewHolder;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
     private FirebaseDatabase database;
 
 
-    private FirebaseRecyclerAdapter<OrderSummaryModel, CartViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<OrderSummaryModel, OrderSummaryViewHolder> mAdapter;
     ArrayList<String> listTotal = new ArrayList<String>();
 
 
@@ -133,6 +132,8 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
                     below two line to call that class in which ever class you want as we did in this class when the
                     menu item "+" was clicked in our project we needed that dialog so we are calling it on clicking it
                     by using the below two lines 162 and 163 */
+
+
                 Intent in = new Intent(OrderSummaryCartActivity.this, CheckoutActivity.class);
                 in.putStringArrayListExtra("from_order_summary_activity", listTotal);
                 startActivity(in);
@@ -177,12 +178,12 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
         // myKey = new Preferences().getUserKey(MyConnectionsActivity.this);
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("cart");
         Query postsQuery = myRef;
-        mAdapter = new FirebaseRecyclerAdapter<OrderSummaryModel, CartViewHolder>
+        mAdapter = new FirebaseRecyclerAdapter<OrderSummaryModel, OrderSummaryViewHolder>
                 (OrderSummaryModel.class,
                         R.layout.item_order_summary,
-                        CartViewHolder.class, postsQuery) {
+                        OrderSummaryViewHolder.class, postsQuery) {
             @Override
-            protected void populateViewHolder(CartViewHolder viewHolder,
+            protected void populateViewHolder(OrderSummaryViewHolder viewHolder,
                                               final OrderSummaryModel model, int position) {
                 //final DatabaseReference postRef = getRef(position);
                 //inal String friend_key = postRef.getKey();
@@ -200,7 +201,7 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
 
-                                    Toast.makeText(OrderSummaryCartActivity.this, "You Clicked : ",
+                                    Toast.makeText(OrderSummaryCartActivity.this, "I am from order summary activity ",
                                             Toast.LENGTH_SHORT).show();
 
                                    /* Intent i = new Intent(WorkoutTypesActivity.this, DetailsActivity.class);
@@ -245,7 +246,8 @@ public class OrderSummaryCartActivity extends AppCompatActivity {
         mRecycler.setAdapter(mAdapter);
 
 
-        for(int i =0; i< arrayModel.size(); i++){
+        for(int i =0; i< arrayModel.size(); i++)
+        {
             String rupees = arrayModel.get(i).getRs().replace("Rs: ","");
             int total = Integer.parseInt(arrayModel.get(i).getQuantity()) * Integer.parseInt(rupees);
             listTotal.add(String.valueOf (total));

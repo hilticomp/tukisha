@@ -9,28 +9,28 @@
     <include layout="@layout/view_toolbar" />
 
     <TextView
-        android:id="@+id/finaltotal"
+        android:id="@+id/thankyoupage"
         android:layout_width="match_parent"
-        android:layout_height="420dp"
-        android:background="#FFC300"
+        android:layout_height="450dp"
+        android:background="#ffffff"
         android:gravity="center"
-
         android:textColor="#C70039"
         android:textSize="25sp"
         android:visibility="visible"
         android:textStyle="bold"
+        android:text="@string/thank_you"
         />
 
-    <TextView
-        android:id="@+id/thankyou"
+    <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
-        android:gravity="center"
-       android:text="@string/address"
-        android:textColor="#ffffff"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:id="@+id/thankyouHomeButton"
+        android:background="#C70039"
+        android:text="Click here to go to home page"
+        android:textColor="#ffc300"
+        android:textStyle="bold"/>
+
+
 
 </LinearLayout>
 

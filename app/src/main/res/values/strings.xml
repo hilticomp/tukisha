@@ -7,5 +7,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_addto">Add To</string>
     <string name="action_checkout">Checkout</string>
+    <string name="address">The users Delivery address comes here.</string>
     <string name="thank_you">Thank you, your order has been successfully placed</string>
 </resources>

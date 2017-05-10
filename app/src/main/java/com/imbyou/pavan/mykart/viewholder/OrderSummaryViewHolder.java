@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
  * Created by Lenovo on 19-Apr-17.
  */
 
-public class CartViewHolder extends RecyclerView.ViewHolder {
+public class OrderSummaryViewHolder extends RecyclerView.ViewHolder {
 
     public CardView mCardListItem;
     public TextView mItemName;
@@ -28,7 +28,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     public TextView mTotal;
     public TextView mQuantity;
 
-    public CartViewHolder(View itemView) {
+    public OrderSummaryViewHolder(View itemView) {
         super(itemView);
 
         mCardListItem = (CardView)itemView.findViewById(R.id.cardlist_item);

@@ -1,5 +1,6 @@
 package com.imbyou.pavan.mykart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -57,7 +58,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         if (mToolbarTitleTextView != null) {
             //Setting name for toolbar
-            mToolbarTitleTextView.setText("Thank You");
+            mToolbarTitleTextView.setText("Totol Amount");
         }
 
 
@@ -104,8 +105,9 @@ public class CheckoutActivity extends AppCompatActivity {
             case R.id.menu_signout:
 
 
-
-                Toast.makeText(CheckoutActivity.this, "Logged Out", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(CheckoutActivity.this, ThankYouActivity.class);
+                startActivity(i);
+               // Toast.makeText(CheckoutActivity.this, "Logged Out", Toast.LENGTH_LONG).show();
                 return true;
 
 

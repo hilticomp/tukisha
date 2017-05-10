@@ -31,6 +31,12 @@
 
         <activity android:name=".CheckoutActivity">
         </activity>
+
+        <activity android:name=".ThankYouActivity">
+        </activity>
     </application>
 
 </manifest>
+
+
+
