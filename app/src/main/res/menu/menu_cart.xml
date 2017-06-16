@@ -3,9 +3,9 @@
 
     <item
         android:id="@+id/menu_add"
+        android:icon="@drawable/shopping_cart_yellow"
         android:title="@string/action_addto"
         app:showAsAction="always"
-        android:icon="@drawable/shopping_cart_yellow"
         />
 
 

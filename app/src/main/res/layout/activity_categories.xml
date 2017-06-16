@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -32,7 +31,7 @@
             android:layout_marginTop="10dp"
             android:drawablePadding="10dp"
             android:drawableTop="@drawable/no_contacts"
-            android:text="No contacts found"
+            android:text="@string/no_contacts_found"
             android:textColor="@color/mine_shaft"
             android:textSize="14sp"
             android:visibility="gone" />

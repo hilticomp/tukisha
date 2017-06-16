@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#C70039"
+            android:background="#4A82EF"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -21,10 +21,10 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable"
+            android:background="#4A82EF"
             app:tabGravity="fill"
-            android:background="#C70039"
-            app:tabTextColor="#FFC300"/>
+            app:tabMode="scrollable"
+            app:tabTextColor="#FFFFFF" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

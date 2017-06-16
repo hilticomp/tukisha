@@ -12,13 +12,13 @@
         android:id="@+id/finaltotal"
         android:layout_width="match_parent"
         android:layout_height="420dp"
-        android:background="#FFC300"
+        android:background="#FFFFFF"
         android:gravity="center"
 
-        android:textColor="#C70039"
+        android:textColor="#4A82EF"
         android:textSize="25sp"
-        android:visibility="visible"
         android:textStyle="bold"
+        android:visibility="visible"
         />
 
     <TextView

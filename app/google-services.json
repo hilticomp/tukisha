@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "192563360275",
-    "firebase_url": "https://mykart-402c8.firebaseio.com",
-    "project_id": "mykart-402c8",
-    "storage_bucket": "mykart-402c8.appspot.com"
+    "project_number": "669642410399",
+    "firebase_url": "https://tshuma-8d9df.firebaseio.com",
+    "project_id": "tshuma-8d9df",
+    "storage_bucket": "tshuma-8d9df.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:192563360275:android:b08d899d9d6820a1",
+        "mobilesdk_app_id": "1:669642410399:android:e6452a8334d26e76",
         "android_client_info": {
-          "package_name": "com.imbyou.pavan.mykart"
+          "package_name": "com.artitech.tsalano.tukisha"
         }
       },
       "oauth_client": [
         {
-          "client_id": "192563360275-dal8gr767ovdfmii54lftp8vn3aco8la.apps.googleusercontent.com",
+          "client_id": "669642410399-01tog37l2ghrp3tmsuln62al2je6rnid.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAMyRDT3r7zs8gLJzymPnM_x5IMX_Nr1Is"
+          "current_key": "AIzaSyCdHdwcBusV-eTX2wFsGIay_EJVc7lqJ5E"
         }
       ],
       "services": {
