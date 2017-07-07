@@ -38,7 +38,8 @@
         <activity android:name=".AirtimeThankYouActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SendSMSActivity" />
-        <activity android:name=".DeviceListActivity"></activity>
+        <activity android:name=".DeviceListActivity" />
+        <activity android:name=".TransactionHistoryActivity" />
     </application>
 
 </manifest>

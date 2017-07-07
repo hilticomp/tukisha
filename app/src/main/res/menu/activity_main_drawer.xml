@@ -16,8 +16,14 @@
             android:id="@+id/nav_balance"
             android:icon="@drawable/ic_menu_camera"
             android:title="Current Balance" />
+
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_transactionHistory"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="View Transaction History" />
+
+        <item
+            android:id="@+id/nav_callcentre"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Contact Call Centre" />
 

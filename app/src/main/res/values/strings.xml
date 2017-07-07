@@ -34,7 +34,7 @@
     <string name="none_found">No device found</string>
     <string name="select_device">Select the connected device</string>
     <string name="not_connected">Please connect a Bluetooth printer</string>
-    <string name="bt_not_enabled_leaving">Bluetooth does not start, quit the program</string>
+    <string name="bt_not_enabled_leaving">Bluetooth does not start</string>
     <string name="title_connecting">connecting…</string>
     <string name="title_connected_to">connected: </string>
     <string name="title_not_connected">Is not connected</string>
@@ -46,4 +46,6 @@
     <string name="no_contacts_found">No contacts found</string>
     <string name="credit_vend_tax_invoice">CREDIT VEND - TAX INVOICE</string>
     <string name="action_printertest">Printer Test</string>
+    <string name="title_activity_transaction_history">Transaction History</string>
+    <string name="transaction_history_title">Transaction History</string>
 </resources>

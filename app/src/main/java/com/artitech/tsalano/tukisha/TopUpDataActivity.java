@@ -9,16 +9,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.artitech.tsalano.tukisha.errorhandling.BackendDownException;
 import com.artitech.tsalano.tukisha.model.AirtimeVoucher;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import java.net.SocketTimeoutException;
 import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
@@ -88,6 +91,21 @@ public class TopUpDataActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
     private void configureToolbar() {
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -123,8 +141,8 @@ public class TopUpDataActivity extends AppCompatActivity {
                         progressDialog.setCanceledOnTouchOutside(false);
                         progressDialog.show();
 
-
                         AsyncHttpClient client = new AsyncHttpClient();
+                        client.setTimeout(20000);
                         client.get("http://munipoiapp.herokuapp.com/api/app/data?productcode=" + productcode + "&agentid=" + agentid + "&mobileNumber=" + itemCellNumber.getText().toString(), new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -155,9 +173,47 @@ public class TopUpDataActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                                Log.d("airtime: ", error.toString());
-                                progressDialog.dismiss();
+                            public void onFailure(int status, Header[] headers, byte[] responseBody, Throwable error) {
+
+                                if (status == 404) {
+                                    try {
+                                        throw new BackendDownException("System is down, Please try again later or Call this number 078 377 6207");
+                                    } catch (BackendDownException e) {
+
+
+                                    }
+                                } else if (error instanceof SocketTimeoutException) {
+
+                                    progressDialog.dismiss();
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(TopUpDataActivity.this);
+
+                                    builder
+                                            .setMessage("System is taking too long to process your request, please check if voucher was issued for " + itemCellNumber.getText() + " for " + producttype + "?")
+                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int id) {
+
+                                                    Intent i = new Intent(TopUpDataActivity.this, TransactionHistoryActivity.class);
+                                                    startActivity(i);
+                                                }
+                                            }).show();
+
+                                } else {
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(TopUpDataActivity.this);
+
+                                    builder
+                                            .setMessage("System is taking too long to process your request, please check if voucher was issued " + itemCellNumber.getText() + " for " + producttype + "?")
+                                            .setPositiveButton("Technical error message", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    Intent i = new Intent(TopUpDataActivity.this, TransactionHistoryActivity.class);
+                                                    startActivity(i);
+                                                }
+                                            });
+
+                                }
                             }
 
 
