@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -21,7 +20,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,38 +36,31 @@ import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListene
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView mToolbarTitleTextView;
-    private RecyclerView mRecycler;
-    private GridLayoutManager mManager;
-
-    private SharedPreferences mPreferences;
-    //private CircleImageView mProfileImage;
-    private ProgressDialog progressDialog;
-    private NavigationView navigationView;
-
-
-    private static String balance,agentid;
     public static final String MyAgentPref = "AgentPrefs";
     public static final String agentID = "agentID";
     public static final String currentBalance = "balance";
-
     /******************************************************************************************************/
     // Debugging
     private static final String TAG = "MainActivity";
     private static final boolean DEBUG = true;
-    /******************************************************************************************************/
-
     /*******************************************************************************************************/
     // Key names received from the BluetoothService Handler
 
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
     private static final String CHINESE = "GBK";
-
-
-
-
+    private static String balance, agentid;
+    TukishaApplication tukishaApplication;
+    private TextView mToolbarTitleTextView;
+    private RecyclerView mRecycler;
+    /******************************************************************************************************/
+    private GridLayoutManager mManager;
+    private SharedPreferences mPreferences;
+    //private CircleImageView mProfileImage;
+    private ProgressDialog progressDialog;
+    private NavigationView navigationView;
     private FirebaseDatabase database;
+    private FirebaseRecyclerAdapter<CategoriesModel, CategoriesViewHolder> mAdapter;
 
     @Override
     protected void onStop() {
@@ -78,10 +69,6 @@ public class MainActivity extends AppCompatActivity
         if (DEBUG)
             Log.e(TAG, "-- ON STOP --");
     }
-
-    private FirebaseRecyclerAdapter<CategoriesModel, CategoriesViewHolder> mAdapter;
-
-    TukishaApplication tukishaApplication;
 
     @Override
     protected void onStart() {
@@ -348,6 +335,11 @@ public class MainActivity extends AppCompatActivity
             String phone = "+27861852853";
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
             startActivity(intent);
+
+        } else if (id == R.id.nav_cash_mini_statement) {
+
+            Intent i = new Intent(MainActivity.this, CashMiniStatementActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_transactionHistory) {
 

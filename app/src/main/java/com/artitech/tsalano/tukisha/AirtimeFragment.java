@@ -16,14 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.artitech.tsalano.tukisha.errorhandling.BackendDownException;
+import com.artitech.tsalano.tukisha.model.AirtimeVoucher;
+import com.artitech.tsalano.tukisha.model.CategoryTypesModel;
+import com.artitech.tsalano.tukisha.viewholder.CategoryTypesViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.gson.Gson;
-import com.artitech.tsalano.tukisha.model.AirtimeVoucher;
-import com.artitech.tsalano.tukisha.model.CategoryTypesModel;
-import com.artitech.tsalano.tukisha.viewholder.CategoryTypesViewHolder;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.twotoasters.jazzylistview.recyclerview.JazzyRecyclerViewScrollListener;
@@ -39,16 +39,13 @@ import cz.msebera.android.httpclient.Header;
 @SuppressLint("ValidFragment")
 public class AirtimeFragment extends Fragment {
 
-    private RecyclerView mRecycler;
-    private LinearLayoutManager mManager;
-    private TukishaApplication tukishaApplication;
-
-    //private Preferences mPreferences;
-
     String imbyou;
     String category;
+    private RecyclerView mRecycler;
 
-
+    //private Preferences mPreferences;
+    private LinearLayoutManager mManager;
+    private TukishaApplication tukishaApplication;
     private FirebaseDatabase database;
     private FirebaseRecyclerAdapter<CategoryTypesModel, CategoryTypesViewHolder> mAdapter;
 
@@ -64,7 +61,7 @@ public class AirtimeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_furniture, container, false);
+        View view = inflater.inflate(R.layout.fragment_airtime, container, false);
 
         mRecycler = (RecyclerView) view.findViewById(R.id.invite_frag_recyclerView);
         database = FirebaseDatabase.getInstance();

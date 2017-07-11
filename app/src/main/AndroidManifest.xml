@@ -40,6 +40,7 @@
         <activity android:name=".SendSMSActivity" />
         <activity android:name=".DeviceListActivity" />
         <activity android:name=".TransactionHistoryActivity" />
+        <activity android:name=".CashMiniStatementActivity" />
     </application>
 
 </manifest>

@@ -10,23 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Tsheko on 13-Apr-17.
  */
 
 public class ElectricityActivity extends AppCompatActivity {
 
+    static CharSequence[] electricity = new String[]{"Purchase Token", "Redeem FBE", "Blind Vend", "Re-Print Receipt"};
+    private static String message;
+    AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    AppSectionsPagerAdapter mAppSectionsPagerAdapter;
-
-    static CharSequence[] electricity = new String[]{"Purchase Token","Redeem FBE","Blind Vend","Re-Print Receipt"};
-
-    private static String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,54 +114,5 @@ public class ElectricityActivity extends AppCompatActivity {
 
     }
 
-    /*private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new SundayFragment(), "Sunday");
-        adapter.addFrag(new MondayFragment(), "Monday");
-        adapter.addFrag(new TuesdayFragment(), "Tuesday");
-        adapter.addFrag(new WednesdayFragment(), "Wednesday");
-        adapter.addFrag(new ThursdayFragment(), "Thursday");
-        adapter.addFrag(new FridayFragment(), "Friday");
-        adapter.addFrag(new SatuardayFragment(), "Satuarday");
-
-
-
-        viewPager.setAdapter(adapter);
-    }*/
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-
-
-
-            return mFragmentList.get(position);
-
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-
-
-    }
 }
 

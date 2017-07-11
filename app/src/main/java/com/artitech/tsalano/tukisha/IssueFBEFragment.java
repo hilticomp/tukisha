@@ -3,14 +3,11 @@ package com.artitech.tsalano.tukisha;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +18,8 @@ import android.widget.TextView;
 import com.artitech.tsalano.tukisha.errorhandling.BackendDownException;
 import com.artitech.tsalano.tukisha.errorhandling.InvalidMeterNumberException;
 import com.artitech.tsalano.tukisha.model.ErrorMessageModel;
-import com.google.gson.Gson;
 import com.artitech.tsalano.tukisha.model.VoucherModel;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -118,8 +115,6 @@ public class IssueFBEFragment extends Fragment {
                         progressDialog.setIndeterminate(true);
                         progressDialog.setCanceledOnTouchOutside(false);
                         progressDialog.show();
-
-                        //Log.d("URL is", "http://munipoiapp.herokuapp.com/api/app/electricityfbe?meternumber=" + itemMeterNumber.getText().toString() + "&agentid=" + tukishaApplication.getAgentID());
 
                         AsyncHttpClient client = new AsyncHttpClient();
                         client.get("http://munipoiapp.herokuapp.com/api/app/electricityfbe?meternumber=" + itemMeterNumber.getText().toString() + "&agentid=" + tukishaApplication.getAgentID(), new AsyncHttpResponseHandler() {
