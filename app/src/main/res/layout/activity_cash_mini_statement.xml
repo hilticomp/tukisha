@@ -20,16 +20,51 @@
         android:visibility="visible" />
 
     <TextView
-        android:id="@+id/cashbackbalance"
+        android:id="@+id/cashElectricityTotal"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="R0"
+        android:text="Electricity Total : R 0"
         android:textColor="#4A82EF"
         android:textSize="25sp"
         android:textStyle="bold"
         android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/cashTelcoTotal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="Telco Total : R 0"
+        android:textColor="#4A82EF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/cashTotal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="Total : R 0"
+        android:textColor="#4A82EF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/printButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="5dp"
+        android:background="#4A82EF"
+        android:paddingBottom="5dp"
+        android:text="Print Statement"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

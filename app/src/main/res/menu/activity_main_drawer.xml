@@ -35,7 +35,7 @@
             <item
                 android:id="@+id/nav_cash_mini_statement"
                 android:icon="@drawable/ic_menu_money"
-                android:title="Cash Mini Statement" />
+                android:title="Cash Up Mini Statement" />
         </menu>
     </item>
 

@@ -1,5 +1,6 @@
 package com.artitech.tsalano.tukisha;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -33,17 +37,18 @@ import cz.msebera.android.httpclient.Header;
  * Created by solly on 2017/06/29.
  */
 
-public class TransactionHistoryActivity extends AppCompatActivity {
+public class TransactionHistoryActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     protected static ArrayList<TransactionHistoryModel> listItems;
-
+    Calendar myCalendar = Calendar.getInstance();
     TukishaApplication tukishaApplication;
-
     private Toolbar toolbar;
-
-    private TextView mToolbarTitleTextView;
+    private TextView mToolbarTitleTextView, dateView;
     private ListView transactionListView;
     private RelativeLayout layoutEmpty;
+    private EditText dateEditText;
+
+    private int year, month, day;
 
     public static String getDateTimeString() {
 
@@ -71,6 +76,8 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         transactionListView = (ListView) findViewById(R.id.listv);
         layoutEmpty = (RelativeLayout) findViewById(R.id.layout_empty);
 
+        dateEditText = (EditText) findViewById(R.id.dateEditText);
+        dateEditText.setOnClickListener(this);
 
         configureToolbar();
 
@@ -79,8 +86,35 @@ public class TransactionHistoryActivity extends AppCompatActivity {
             mToolbarTitleTextView.setText(R.string.transaction_history_title);
         }
 
-        loadTransactionHistory();
+        loadTransactionHistory(getDateTimeString());
 
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        new DatePickerDialog(TransactionHistoryActivity.this, this, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear,
+                          int dayOfMonth) {
+        myCalendar.set(Calendar.YEAR, year);
+        myCalendar.set(Calendar.MONTH, monthOfYear);
+        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        updateLabel();
+    }
+
+    private void updateLabel() {
+
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        dateEditText.setText(sdf.format(myCalendar.getTime()));
+
+        loadTransactionHistory(sdf.format(myCalendar.getTime()));
     }
 
     @Override
@@ -113,7 +147,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
 
     }
 
-    private void loadTransactionHistory() {
+    private void loadTransactionHistory(String date) {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -123,9 +157,8 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        //tukishaApplication.getAgentID()
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("https://munipoiapp.herokuapp.com/api/app/telcotransactions?customerId=" + tukishaApplication.getAgentID() + "&searchCriteria=" + getDateTimeString(), new AsyncHttpResponseHandler() {
+        client.get("https://munipoiapp.herokuapp.com/api/app/telcotransactions?customerId=" + tukishaApplication.getAgentID() + "&searchCriteria=" + date, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int status, Header[] headers, byte[] responseBody) {
                 try {
@@ -141,6 +174,9 @@ public class TransactionHistoryActivity extends AppCompatActivity {
                             layoutEmpty.setVisibility(View.VISIBLE);
                             transactionListView.setVisibility(View.GONE);
                             return;
+                        } else {
+                            layoutEmpty.setVisibility(View.GONE);
+                            transactionListView.setVisibility(View.VISIBLE);
                         }
 
                         Gson gson = new Gson();

@@ -16,7 +16,7 @@ import android.view.MenuItem;
 
 public class ElectricityActivity extends AppCompatActivity {
 
-    static CharSequence[] electricity = new String[]{"Purchase Token", "Redeem FBE", "Blind Vend", "Re-Print Receipt"};
+    static CharSequence[] electricity = new String[]{"Purchase Token", "Redeem FBE", "Blind Vend", "Issue Advise", "Re-Print Receipt"};
     private static String message;
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     private Toolbar toolbar;
@@ -76,6 +76,9 @@ public class ElectricityActivity extends AppCompatActivity {
                     return new BlindVendFragment();
 
                 case 3:
+                    return new IssueAdviceFragment();
+
+                case 4:
                     return new Re_PrintFragment();
 
                 default:
@@ -87,7 +90,7 @@ public class ElectricityActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return 5;
         }
 
         /*public CharSequence getSubCategories(int position){

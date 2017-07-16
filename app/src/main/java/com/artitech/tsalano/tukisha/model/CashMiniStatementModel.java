@@ -6,15 +6,26 @@ package com.artitech.tsalano.tukisha.model;
 
 public class CashMiniStatementModel {
 
-    private String cashUpTotal;
+    private String electricityTotal, telcoTotal, total;
 
-    public CashMiniStatementModel(String cashUpTotal) {
+    public CashMiniStatementModel(String electricityTotal, String telcoTotal, String total) {
 
-        this.cashUpTotal = cashUpTotal;
+        this.electricityTotal = electricityTotal;
+        this.telcoTotal = telcoTotal;
+        this.total = total;
 
     }
 
-    public String getCashUpTotal() {
-        return cashUpTotal;
+    public String getElectricityTotal() {
+        return electricityTotal;
     }
+
+    public String getTelcoTotal() {
+        return telcoTotal;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
 }

@@ -79,10 +79,10 @@ public class ListAdapter extends ArrayAdapter<TransactionHistoryModel> {
                 case "CellC":
                     drawableResourceId = getContext().getResources().getIdentifier("cellc_logo", "drawable", getContext().getPackageName());
                     break;
-                case "Virgin Mobile":
+                case "Virgin":
                     drawableResourceId = getContext().getResources().getIdentifier("virginmobile_logo", "drawable", getContext().getPackageName());
                     break;
-                case "Telkom Mobile":
+                case "Telkom":
                     drawableResourceId = getContext().getResources().getIdentifier("telkom_logo", "drawable", getContext().getPackageName());
                     break;
                 case "Neotel":

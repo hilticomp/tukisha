@@ -48,6 +48,6 @@
     <string name="action_printertest">Printer Test</string>
     <string name="title_activity_transaction_history">Transaction History</string>
     <string name="transaction_history_title">Transaction History</string>
-    <string name="cash_mini_statement_title">Cash Mini Statement</string>
-    <string name="your_cash_back_balance">Your Cash Back Balance</string>
+    <string name="cash_mini_statement_title">Cash Up Mini Statement</string>
+    <string name="your_cash_back_balance">Total Sales for the day </string>
 </resources>
