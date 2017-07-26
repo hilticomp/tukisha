@@ -48,8 +48,6 @@ public class TransactionHistoryActivity extends AppCompatActivity implements Vie
     private RelativeLayout layoutEmpty;
     private EditText dateEditText;
 
-    private int year, month, day;
-
     public static String getDateTimeString() {
 
         Date today = Calendar.getInstance().getTime();

@@ -2,20 +2,15 @@ package com.artitech.tsalano.tukisha;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.artitech.tsalano.tukisha.printer.PrinterCommand;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,16 +20,37 @@ import java.util.Date;
 
 public class ThankYouActivity extends AppCompatActivity {
 
-    private TextView mToolbarTitleTextView, itemVoucher,itemDistributor,itemDate,itemEnergyKWh,itemAmount,
-            itemClientID,itemTerminalID, itemVATNumber, itemMeterNumber,itemTokTech,itemALG,itemSGC,itemKRN,itemTI,
-            itemDescription, itemAddress, itemReceipt;
+    private static final String CHINESE = "GBK";
+    private TextView mToolbarTitleTextView;
+    private TextView itemVoucher;
+    private TextView itemDistributor;
+    private TextView itemDate;
+    private TextView itemPurchaseDate;
+    private TextView itemEnergyKWh;
+    private TextView itemAmount;
+    private TextView itemClientID;
+    private TextView itemTerminalID;
+    private TextView itemVATNumber;
+    private TextView itemMeterNumber;
+    private TextView itemTokTech;
+    private TextView itemALG;
+    private TextView itemSGC;
+    private TextView itemKRN;
+    private TextView itemTI;
+    private TextView itemDescription;
+    private TextView itemAddress;
+    private TextView itemReceipt;
+    private TextView itemFBEToken;
+    private TextView item_Date;
+    private TextView fbeTokenNumberLabel;
+    private TextView headerNameLabel;
     private Toolbar toolbar;
     private Button goHome,sendSMSButton,printButton;
+    private LinearLayout seventhview;
     private String vouchernumber,distributor,date,energyKWh,amount,client,terminal,vatNumber,meterNumber,
-            tokTech,alg,sgc,krn,ti,description,address,receipt,balance,header;
+            tokTech, alg, sgc, krn, ti, description, address, receipt, fbetoken, fbekwh, balance, header, dateOfPurchase;
+    private Boolean isReprint = false;
     private TukishaApplication tukishaApplication;
-
-    private static final String CHINESE = "GBK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +63,7 @@ public class ThankYouActivity extends AppCompatActivity {
         vouchernumber = bundle.getString("vouchernumber");
         distributor = bundle.getString("distributor");
         date = bundle.getString("date");
+        dateOfPurchase = bundle.getString("dateOfPurchase");
         energyKWh = bundle.getString("energyKWh");
         amount = bundle.getString("amount");
         vatNumber = bundle.getString("vatNumber");
@@ -61,8 +78,26 @@ public class ThankYouActivity extends AppCompatActivity {
         description = bundle.getString("description");
         address = bundle.getString("address");
         receipt = bundle.getString("receipt");
-        balance = bundle.getString("balance");
         header = bundle.getString("header");
+
+        if (header.contains("REPRINT"))
+            isReprint = true;
+
+        if (bundle.containsKey("fbetoken")) {
+            if (bundle.getString("fbetoken").isEmpty())
+                fbetoken = null;
+            else {
+
+                fbetoken = bundle.getString("fbetoken");
+                fbekwh = bundle.getString("fbekwh");
+                balance = bundle.getString("balance");
+                header = bundle.getString("header");
+            }
+        } else
+            fbetoken = null;
+
+        headerNameLabel = (TextView) findViewById(R.id.header_name);
+        headerNameLabel.setText(header);
 
         itemVoucher = (TextView)findViewById(R.id.tokenNumber);
         itemVoucher.setText(vouchernumber);
@@ -75,6 +110,14 @@ public class ThankYouActivity extends AppCompatActivity {
 
         itemDate = (TextView)findViewById(R.id.date);
         itemDate.setText(date);
+
+        item_Date = (TextView) findViewById(R.id.item_Date);
+
+        if (isReprint)
+            item_Date.setText("RePrint Date");
+
+        itemPurchaseDate = (TextView) findViewById(R.id.purchaseDate);
+        itemPurchaseDate.setText(dateOfPurchase);
 
         itemEnergyKWh = (TextView)findViewById(R.id.energykwh);
         itemEnergyKWh.setText(energyKWh + "KWh");
@@ -115,6 +158,21 @@ public class ThankYouActivity extends AppCompatActivity {
         itemReceipt = (TextView)findViewById(R.id.receiptno);
         itemReceipt.setText(receipt);
 
+        //PurchaseToken with FBE
+        if (fbetoken != null) {
+
+            fbeTokenNumberLabel = (TextView) findViewById(R.id.fbeTokenNumberLabel);
+            fbeTokenNumberLabel.setVisibility(View.VISIBLE);
+
+            itemFBEToken = (TextView) findViewById(R.id.fbeTokenNumber);
+            itemFBEToken.setText(fbetoken);
+            itemFBEToken.setVisibility(View.VISIBLE);
+
+            seventhview = (LinearLayout) findViewById(R.id.seventh_view);
+            seventhview.setVisibility(View.VISIBLE);
+
+        }
+
         goHome = (Button)findViewById(R.id.thankyouHomeButton);
         goHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +192,12 @@ public class ThankYouActivity extends AppCompatActivity {
                 i.putExtra("energyKWh", itemEnergyKWh.getText());
                 i.putExtra("amount", itemAmount.getText());
                 i.putExtra("flag", "Electricity");
+
+                //PurchaseToken with FBE
+                if (fbetoken != null) {
+                    i.putExtra("fbetoken", fbetoken);
+                }
+
                 startActivity(i);
             }
         });
@@ -166,6 +230,7 @@ public class ThankYouActivity extends AppCompatActivity {
 
         if (mainToolbar != null) {
             mToolbarTitleTextView = (TextView) mainToolbar.findViewById(R.id.toolbar_title_textView);
+            mToolbarTitleTextView.setText(header);
 
             setSupportActionBar(mainToolbar);
 
@@ -180,12 +245,8 @@ public class ThankYouActivity extends AppCompatActivity {
 
     private void PrintVoucher()
     {
-        //tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format("  %s    \n\n",header), CHINESE, 0, 1, 1, 0));
 
         tukishaApplication.SendDataString(String.format("           %s          \n\n",header));
-
-        //tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text("Distributor                         VAT Number\n", CHINESE, 0, 0, 0, 0));
-
 
         tukishaApplication.SendDataString("Distributor                         VAT Number\n"); //48
         tukishaApplication.SendDataString(String.format("%s                        %s\n\n",distributor,vatNumber));
@@ -197,6 +258,13 @@ public class ThankYouActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDateandTime = sdf.format(new Date());
         tukishaApplication.SendDataString(currentDateandTime +"\n\n");
+
+        if (isReprint)
+            tukishaApplication.SendDataString("Reprint Date\n");
+        else
+            tukishaApplication.SendDataString("Date of Purchase\n");
+
+        tukishaApplication.SendDataString(dateOfPurchase + "\n\n");
 
         tukishaApplication.SendDataString("Receipt No      ClientID           Terminal ID\n"); //48
         tukishaApplication.SendDataString(String.format("%s %s      %s\n\n",receipt,client,terminal));
@@ -210,9 +278,19 @@ public class ThankYouActivity extends AppCompatActivity {
         tukishaApplication.SendDataString("Description     Energy Kwh         Amount\n"); //48
         tukishaApplication.SendDataString(String.format("%s     %sKwh             R%s\n\n",description,energyKWh,amount));
 
-        //tukishaApplication.SendDataString(String.format("           %s          \n\n\n\n",vouchernumber));
-
         tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format(" %s \n\n\n\n",vouchernumber), CHINESE, 0, 1, 1, 0));
+
+        //PurchaseToken with FBE
+        if (fbetoken != null) {
+
+            tukishaApplication.SendDataString(String.format("           %s          \n\n", "FREE BASIC ELECTRICITY"));
+
+            tukishaApplication.SendDataString("Description     Energy Kwh         Amount\n"); //48
+            tukishaApplication.SendDataString(String.format("%s     %sKwh             R%s\n\n", "FBE", fbekwh, "0.00"));
+
+            tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format(" %s \n\n\n\n", fbetoken), CHINESE, 0, 1, 1, 0));
+
+        }
 
         tukishaApplication.SendDataByte(PrinterCommand.POS_Set_Cut(1));
         tukishaApplication.SendDataByte(PrinterCommand.POS_Set_PrtInit());

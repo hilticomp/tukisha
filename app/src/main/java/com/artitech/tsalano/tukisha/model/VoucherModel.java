@@ -7,14 +7,14 @@ package com.artitech.tsalano.tukisha.model;
 public class VoucherModel {
 
     private String meternumber,receiptHeader,distributer,vatNumber,operatorMessage,custMessage,
-            address,date,receiptNumber,clientID,terminalID,meterNumber,tokTech,alg,sgc,krn,ti,description,
-            energyKWh,amount,tokenNumber,balance;
+            address, date, dateOfPurchase, receiptNumber, clientID, terminalID, meterNumber, tokTech, alg, sgc, krn, ti, description,
+            energyKWh, amount, tokenNumber, FBEtoken, FBEKwh, balance;
 
 
-    public VoucherModel(String receiptHeader,String distributer,String vatNumber,String operatorMessage,
-                        String custMessage, String address,String date,String receiptNumber,String clientID,String terminalID,
-                        String meterNumber,String tokTech,String alg,String sgc,String krn,String ti,String description,
-                        String energyKWh,String amount,String tokenNumber,String balance) {
+    public VoucherModel(String receiptHeader, String distributer, String vatNumber, String operatorMessage,
+                        String custMessage, String address, String date, String dateOfPurchase, String receiptNumber, String clientID, String terminalID,
+                        String meterNumber, String tokTech, String alg, String sgc, String krn, String ti, String description,
+                        String energyKWh, String amount, String tokenNumber, String FBEtoken, String FBEKwh, String balance) {
 
         this.meternumber = meterNumber;
         this.distributer = distributer;
@@ -25,6 +25,7 @@ public class VoucherModel {
         this.custMessage = custMessage;
         this.address = address;
         this.date = date;
+        this.dateOfPurchase = dateOfPurchase;
         this.receiptNumber = receiptNumber;
         this.clientID = clientID;
         this.terminalID = terminalID;
@@ -38,6 +39,8 @@ public class VoucherModel {
         this.energyKWh = energyKWh;
         this.amount = amount;
         this.tokenNumber = tokenNumber;
+        this.FBEtoken = FBEtoken;
+        this.FBEKwh = FBEKwh;
         this.balance = balance;
 
     }
@@ -68,6 +71,10 @@ public class VoucherModel {
 
     public String getDate() {
         return date;
+    }
+
+    public String getDatePurchased() {
+        return dateOfPurchase;
     }
 
     public String ReceiptNumber() {
@@ -124,6 +131,15 @@ public class VoucherModel {
 
     public String getReceiptNumber() {
         return receiptNumber;
+    }
+
+
+    public String getFBEtoken() {
+        return FBEtoken;
+    }
+
+    public String getFBEKwh() {
+        return FBEKwh;
     }
 
     public String getBalance() {

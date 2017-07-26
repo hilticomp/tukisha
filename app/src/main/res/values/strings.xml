@@ -22,9 +22,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_meternumberlength">Meter Number must be 4 digit long minimum and 13 digit long maximum.</string>
     <string name="error_invalid_amountvalue">You cannot buy for less than R10.</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">Contacts permissions are needed for providing emai completions.</string>
 
     <string name="title_paired_devices">Add Printer</string>
     <string name="title_other_devices">Other useful equipment</string>
@@ -41,9 +39,9 @@
     <string name="Connecting">It is connected to a Bluetooth printer</string>
 
     <string name="amount">Amount</string>
-    <string name="description">description</string>
+    <string name="description">Description</string>
     <string name="energy_kwh">Energy KWh</string>
-    <string name="no_contacts_found">No contacts found</string>
+    <string name="no_category_found">No category found</string>
     <string name="credit_vend_tax_invoice">CREDIT VEND - TAX INVOICE</string>
     <string name="action_printertest">Printer Test</string>
     <string name="title_activity_transaction_history">Transaction History</string>

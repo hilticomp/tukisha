@@ -149,11 +149,11 @@ public class MainActivity extends AppCompatActivity
 
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null) {
-            balance = bundle.getString("balance");
+            balance = tukishaApplication.getBalance(); //bundle.getString("balance");
             agentid = bundle.getString("agentid");
 
-            tukishaApplication.setAgentID(agentid);
-            tukishaApplication.setBalance(balance);
+//            tukishaApplication.setAgentID(agentid);
+//            tukishaApplication.setBalance(balance);
         }
 
         mRecycler = (RecyclerView) findViewById(R.id.invite_recyclerView);
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.getMenu().findItem(R.id.nav_balance).setTitle("Current Balance is "+ balance);
+        navigationView.getMenu().findItem(R.id.nav_balance).setTitle("Current Balance is " + tukishaApplication.getBalance());
 
         getMyCategories();
 

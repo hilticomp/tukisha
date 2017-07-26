@@ -61,6 +61,18 @@
         android:textColor="#343434"
         android:textSize="14sp" />
 
+    <!-- Artist Name -->
+    <TextView
+        android:id="@+id/item_ReceiptNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_VoucherNumber"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text=""
+        android:textColor="#343434"
+        android:textSize="14sp" />
+
     <!-- Rightend Duration -->
     <TextView
         android:id="@+id/item_DateProcessed"

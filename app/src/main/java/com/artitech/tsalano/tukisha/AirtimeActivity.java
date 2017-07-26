@@ -19,23 +19,20 @@ import java.util.List;
 
 public class AirtimeActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    AppSectionsPagerAdapter mAppSectionsPagerAdapter;
-
-    /* PAWAN IMPORTANT: Whatever the name you gave it in firebase the names here
-                 should be the same in this below cases which are in green color.*/
-
     static CharSequence[] vodacom = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] mtn = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] cellc = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] telkom = new String[]{"Airtime", "Data", "SMS"};
+
+    /* PAWAN IMPORTANT: Whatever the name you gave it in firebase the names here
+                 should be the same in this below cases which are in green color.*/
     static CharSequence[] virginmobile = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] neotel = new String[]{"Airtime", "Data", "SMS"};
-
     private static String message;
-
+    AppSectionsPagerAdapter mAppSectionsPagerAdapter;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,28 +81,6 @@ public class AirtimeActivity extends AppCompatActivity {
             return new AirtimeFragment(message, shopDataTabs(message, i).toString());
 
         }
-
-/*
-            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-
-                builder
-                        .setMessage("Are you sure want to buy electricity for meter " + itemMeterNumber.getText() + "?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                // Yes-code
-                                return new AirtimeFragment(message, shopDataTabs(message, i).toString());
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-*/
-
 
         @Override
         public int getCount() {

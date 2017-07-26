@@ -31,7 +31,7 @@ public class CategoryTypesViewHolder extends RecyclerView.ViewHolder {
         mCardListItem = (CardView)itemView.findViewById(R.id.cardlist_item);
         mItemName = (TextView)itemView.findViewById(R.id.item_address);
         mItemShortDesc = (TextView)itemView.findViewById(R.id.item_short_desc);
-        mItemPrice = (TextView)itemView.findViewById(R.id.item_price);
+        //mItemPrice = (TextView)itemView.findViewById(R.id.item_price);
         mProductThumb = (ImageView)itemView.findViewById(R.id.product_thumb);
         mTopView = (LinearLayout) itemView.findViewById(R.id.top_view);
     }
@@ -43,7 +43,7 @@ public class CategoryTypesViewHolder extends RecyclerView.ViewHolder {
 
         mItemName.setText(post.getName());
         mItemShortDesc.setText(post.getDescription());
-//        mItemPrice.setText(post.getRs());
+        //mItemPrice.setText(post.getRs());
         mTopView.setOnClickListener(relativeLayoutClickListener);
         Picasso.with(context).load(post.getImgurl()).fit().centerCrop().into(mProductThumb);
 

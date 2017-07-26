@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.artitech.tsalano.tukisha.errorhandling.BackendDownException;
-import com.artitech.tsalano.tukisha.errorhandling.InvalidMeterNumberException;
-import com.artitech.tsalano.tukisha.model.ErrorMessageModel;
 import com.artitech.tsalano.tukisha.model.VoucherModel;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
@@ -25,6 +27,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -35,8 +38,11 @@ import cz.msebera.android.httpclient.Header;
 @SuppressLint("ValidFragment")
 public class Re_PrintFragment extends Fragment {
 
-    private TextView mToolbarTitleTextView;
-    private TextView itemMeterNumber, errorMessage;
+    protected static ArrayList<VoucherModel> listItems;
+    private ListView transactionListView;
+    private RelativeLayout layoutEmpty;
+    private TextView errorMessage;
+    private EditText meterNumberEditText;
 
     private TukishaApplication tukishaApplication;
 
@@ -45,31 +51,34 @@ public class Re_PrintFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reprint, container, false);
 
-        Button buyReprintButton = (Button) view.findViewById(R.id.buyReprintButton);
-        itemMeterNumber = (TextView) view.findViewById(R.id.item_meternumber);
+        transactionListView = (ListView) view.findViewById(R.id.listv);
+        layoutEmpty = (RelativeLayout) view.findViewById(R.id.layout_empty);
+
+        meterNumberEditText = (EditText) view.findViewById(R.id.item_meternumber);
 
         errorMessage = (TextView) view.findViewById(R.id.errormessage);
 
         tukishaApplication = (TukishaApplication) getActivity().getApplication();
 
+        Button buyReprintButton = (Button) view.findViewById(R.id.buyReprintButton);
         buyReprintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (!isMeterNumberValid(itemMeterNumber.getText().toString())) {
-                    itemMeterNumber.setError(getActivity().getString(R.string.error_invalid_meternumberlength));
-                    itemMeterNumber.requestFocus();
+                if (!isMeterNumberValid(meterNumberEditText.getText().toString())) {
+                    meterNumberEditText.setError(getActivity().getString(R.string.error_invalid_meternumberlength));
+                    meterNumberEditText.requestFocus();
                     return;
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder
-                        .setMessage("Are you sure want to re-print the voucher for meter number " + itemMeterNumber.getText() + "?")
+                        .setMessage("Are you sure want to re-print the voucher for meter number " + meterNumberEditText.getText() + "?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 // Yes-code
-                                confirmDialog();
+                                loadTransactionHistory();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -81,7 +90,6 @@ public class Re_PrintFragment extends Fragment {
                         .show();
             }
         });
-
 
         // Inflate the layout for this fragment
         return view;
@@ -98,110 +106,127 @@ public class Re_PrintFragment extends Fragment {
         return meterNumber.length() >= 4 && meterNumber.length() <= 13;
     }
 
-    private void confirmDialog() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    private void loadTransactionHistory() {
 
-        builder
-                .setMessage("Are you sure you want to re-print?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // Yes-code
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
-                        final ProgressDialog progressDialog = new ProgressDialog(getActivity()); // this = YourActivity
-                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        progressDialog.setMessage("Printing voucher, please wait...");
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.setCanceledOnTouchOutside(false);
-                        progressDialog.show();
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("https://munipoiapp.herokuapp.com/api/app/electricitytransactions?agentid=" + tukishaApplication.getAgentID() + "&meternumber=" + meterNumberEditText.getText().toString(), new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int status, Header[] headers, byte[] responseBody) {
+                try {
 
-                        AsyncHttpClient client = new AsyncHttpClient();
-                        client.get("http://munipoiapp.herokuapp.com/api/app/reprint?meternumber=" + itemMeterNumber.getText().toString() + "&agentid=" + tukishaApplication.getAgentID(), new AsyncHttpResponseHandler() {
-                            @Override
-                            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                                try {
+                    String response = responseBody == null ? null : new String(
+                            responseBody, getCharset());
 
-                                    String response = responseBody == null ? null : new String(
-                                            responseBody, getCharset());
+                    progressDialog.dismiss();
 
-                                    progressDialog.dismiss();
+                    if (status == 200) {
 
-                                    if (response.contains("ERROR")) {
-                                        Gson gson = new Gson();
-                                        ErrorMessageModel error = gson.fromJson(response, ErrorMessageModel.class);
-                                        throw new InvalidMeterNumberException(error.getCustMessage());
+                        if (response.contains("no results")) {
+                            layoutEmpty.setVisibility(View.VISIBLE);
+                            transactionListView.setVisibility(View.GONE);
+                            return;
+                        } else {
+                            layoutEmpty.setVisibility(View.GONE);
+                            transactionListView.setVisibility(View.VISIBLE);
+                        }
 
-                                    } else {
-                                        Gson gson = new Gson();
+                        Gson gson = new Gson();
+                        VoucherModel[] voucherModels = gson.fromJson(response, VoucherModel[].class);
 
-                                        VoucherModel voucher = gson.fromJson(response, VoucherModel.class);
-                                        Log.d("Response: ", response);
+                        if (voucherModels.length > 0) {
 
-                                        Intent i = new Intent(getActivity(), ThankYouActivity.class);
-                                        i.putExtra("vouchernumber", voucher.getTokenNumber());
-                                        i.putExtra("distributor", voucher.getDistributer());
-                                        i.putExtra("date", voucher.getDate());
-                                        i.putExtra("energyKWh", voucher.getEnergyKWh());
-                                        i.putExtra("amount", voucher.getAmount());
-                                        i.putExtra("vatNumber", voucher.getVATNumber());
-                                        i.putExtra("meterNumber", voucher.getMeterNumber());
-                                        i.putExtra("tokTech", voucher.getTokenTech());
-                                        i.putExtra("alg", voucher.getAlg());
-                                        i.putExtra("sgc", voucher.getSGC());
-                                        i.putExtra("krn", voucher.getKrn());
-                                        i.putExtra("ti", voucher.getTI());
-                                        i.putExtra("terminal", voucher.getTerminalID());
-                                        i.putExtra("client", voucher.getClientID());
-                                        i.putExtra("description", voucher.getDescription());
-                                        i.putExtra("address", voucher.getAddress());
-                                        i.putExtra("receipt", voucher.getReceiptNumber());
-                                        i.putExtra("balance", tukishaApplication.getBalance());
-                                        i.putExtra("header", "TAX INVOICE (copy)");
-                                        startActivity(i);
-                                    }
+                            listItems = new ArrayList<VoucherModel>();
 
-                                } catch (final IOException e) {
+                            for (int i = 0; i < voucherModels.length; i++) {
 
-                                    errorMessage.setText("Technical error occurred " + e.getMessage());
-                                    progressDialog.dismiss();
-                                } catch (final InvalidMeterNumberException e) {
+                                listItems.add(voucherModels[i]);
 
-                                    errorMessage.setText(e.getMessage());
-                                    progressDialog.dismiss();
+                            }
 
-                                } catch (Exception e) {
-                                    errorMessage.setText("Technical error occurred " + e.getMessage());
-                                    progressDialog.dismiss();
+                            ElectricityListAdapter adapter = new ElectricityListAdapter(getActivity(), R.layout.list_transaction_layout, R.id.item_ProductType, listItems);
+
+                            transactionListView.setAdapter(adapter);
+
+                            // Click event for single list row
+                            transactionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                @Override
+                                public void onItemClick(AdapterView parent, View view,
+                                                        int position, long id) {
+
+                                    VoucherModel voucher = (VoucherModel) transactionListView.getItemAtPosition(position);
+                                    Log.d("Response: ", voucher.getTokenNumber());
+
+                                    Intent i = new Intent(getActivity(), ThankYouActivity.class);
+                                    i.putExtra("vouchernumber", voucher.getTokenNumber());
+                                    i.putExtra("distributor", voucher.getDistributer());
+                                    i.putExtra("date", voucher.getDate());
+                                    i.putExtra("dateOfPurchase", voucher.getDatePurchased());
+                                    i.putExtra("energyKWh", voucher.getEnergyKWh());
+                                    i.putExtra("amount", voucher.getAmount());
+                                    i.putExtra("vatNumber", voucher.getVATNumber());
+                                    i.putExtra("meterNumber", voucher.getMeterNumber());
+                                    i.putExtra("tokTech", voucher.getTokenTech());
+                                    i.putExtra("alg", voucher.getAlg());
+                                    i.putExtra("sgc", voucher.getSGC());
+                                    i.putExtra("krn", voucher.getKrn());
+                                    i.putExtra("ti", voucher.getTI());
+                                    i.putExtra("terminal", voucher.getTerminalID());
+                                    i.putExtra("client", voucher.getClientID());
+                                    i.putExtra("description", voucher.getDescription());
+                                    i.putExtra("address", voucher.getAddress());
+                                    i.putExtra("receipt", voucher.getReceiptNumber());
+                                    i.putExtra("balance", tukishaApplication.getBalance());
+                                    i.putExtra("header", "TAX INVOICE (COPY) WARNING, THIS IS A REPRINT");
+                                    startActivity(i);
+
                                 }
-                            }
+                            });
 
-                            @Override
-                            public void onFailure(int status, Header[] headers, byte[] responseBody, Throwable error) {
-                                if (status == 404) {
-                                    try {
-                                        throw new BackendDownException("System is down, Please try again later or Call this number 0861 852 853");
-                                    } catch (BackendDownException e) {
-                                        errorMessage.setText("Technical error occurred, either your connection is down or you ran out of data. " + e.getMessage());
-                                    }
-                                } else if (error instanceof SocketTimeoutException) {
-                                    errorMessage.setText("Connection timeout !");
-                                    progressDialog.dismiss();
-                                } else
-                                    errorMessage.setText("Technical error occurred, either your connection is down or you ran out of data. ");
 
-                            }
-                        });
+                        }
 
                     }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        }).show();
 
+                } catch (final IOException e) {
+                    //errorMessage.setText("Technical error occurred " + e.getMessage());
+                    progressDialog.dismiss();
+                } catch (Exception e) {
+                    //errorMessage.setText("Technical error occurred " + e.getMessage());
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(int status, Header[] headers, byte[] responseBody, Throwable error) {
+
+                progressDialog.dismiss();
+
+                if (status == 404) {
+                    try {
+                        throw new BackendDownException("System is down, Please try again later or Call this number 078 377 6207");
+                    } catch (BackendDownException e) {
+                        Log.d("TAG", "Technical error occurred " + e.getMessage());
+                    }
+                } else if (error instanceof SocketTimeoutException) {
+                    Log.d("TAG", "Connection timeout !");
+                } else
+                    Log.d("TAG", "Technical error occurred");
+
+            }
+
+        });
     }
+
 
 }
 

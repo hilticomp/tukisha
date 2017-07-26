@@ -1,8 +1,5 @@
 package com.artitech.tsalano.tukisha;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,24 +7,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.artitech.tsalano.tukisha.model.VoucherModel;
-import com.google.gson.Gson;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Tsheko on 10-May-17.
@@ -114,6 +100,7 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
             public void onClick(View view) {
 
                 Intent i = new Intent(AirtimeThankYouActivity.this, MainActivity.class);
+
                 startActivity(i);
 
             }

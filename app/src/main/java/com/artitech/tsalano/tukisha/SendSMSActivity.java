@@ -34,7 +34,7 @@ public class SendSMSActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Button goHome, sendSMSButton;
 
-    private String vouchernumber, amount, energyKWh, message, flag;
+    private String vouchernumber, amount, energyKWh, message, flag, fbetoken;
     private Context context;
 
     public static String getDateTimeString() {
@@ -70,6 +70,11 @@ public class SendSMSActivity extends AppCompatActivity {
 
             message = "You have top up with " + amount + ", energy KWh:" + energyKWh + " and your voucher number is " + vouchernumber;
 
+            if (bundle.containsKey("fbetoken")) {
+                fbetoken = bundle.getString("fbetoken");
+                message = message + " and FBE voucher number is " + fbetoken;
+            }
+
         } else if (flag.equals("Airtime")) {
 
             vouchernumber = bundle.getString("vouchernumber");
@@ -77,7 +82,6 @@ public class SendSMSActivity extends AppCompatActivity {
 
             message = "Airtime recharged with " + amount + " and your voucher number is " + vouchernumber;
         }
-
 
         itemCellNumber = (EditText) findViewById(R.id.item_cellnumber);
 

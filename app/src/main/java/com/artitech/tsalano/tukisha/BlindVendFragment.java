@@ -24,6 +24,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -226,6 +228,9 @@ public class BlindVendFragment extends Fragment {
                                             i.putExtra("vouchernumber", voucher.getTokenNumber());
                                             i.putExtra("distributor", voucher.getDistributer());
                                             i.putExtra("date", voucher.getDate());
+
+                                            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                                            i.putExtra("dateOfPurchase", currentDateTimeString);
                                             i.putExtra("energyKWh", voucher.getEnergyKWh());
                                             i.putExtra("amount", voucher.getAmount());
                                             i.putExtra("vatNumber", voucher.getVATNumber());

@@ -3,14 +3,11 @@ package com.artitech.tsalano.tukisha;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +19,15 @@ import com.artitech.tsalano.tukisha.errorhandling.BackendDownException;
 import com.artitech.tsalano.tukisha.errorhandling.InvalidMeterNumberException;
 import com.artitech.tsalano.tukisha.errorhandling.MeterNumberNotRegisteredException;
 import com.artitech.tsalano.tukisha.model.ErrorMessageModel;
-import com.google.gson.Gson;
 import com.artitech.tsalano.tukisha.model.VoucherModel;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.json.JSONException;
-
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.concurrent.TimeUnit;
+import java.text.DateFormat;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -50,14 +46,12 @@ public class PurchaseCreditNoteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_purchasecreditnote, container, false);
 
         buyElectricity = (Button) view.findViewById(R.id.buyElectricityButton);
-
-
         itemMeterNumber = (EditText) view.findViewById(R.id.item_meternumber);
         itemAmount = (EditText) view.findViewById(R.id.item_amount);
-
         errorMessage = (TextView) view.findViewById(R.id.errormessage);
 
         tukishaApplication = (TukishaApplication) getActivity().getApplication();
@@ -145,7 +139,7 @@ public class PurchaseCreditNoteFragment extends Fragment {
                         progressDialog.show();
 
                         AsyncHttpClient client = new AsyncHttpClient();
-                        client.get("http://munipoiapp.herokuapp.com/api/app/electricity?meternumber=" + itemMeterNumber.getText().toString() + "&amount=" + itemAmount.getText().toString() + "&agentid=" + tukishaApplication.getAgentID(), new AsyncHttpResponseHandler() {
+                        client.get("https://munipoiapp.herokuapp.com/api/app/electricity?meternumber=" + itemMeterNumber.getText().toString() + "&amount=" + itemAmount.getText().toString() + "&agentid=" + tukishaApplication.getAgentID(), new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int status, Header[] headers, byte[] responseBody) {
                                 try {
@@ -172,29 +166,51 @@ public class PurchaseCreditNoteFragment extends Fragment {
                                             VoucherModel voucher = gson.fromJson(response, VoucherModel.class);
 
                                             //Update Balance
-                                            tukishaApplication.setBalance(voucher.getBalance());
+                                            if (voucher.getBalance() != null) {
+                                                if (!voucher.getBalance().isEmpty())
+                                                    tukishaApplication.setBalance(voucher.getBalance());
 
-                                            Intent i = new Intent(getActivity(), ThankYouActivity.class);
-                                            i.putExtra("vouchernumber", voucher.getTokenNumber());
-                                            i.putExtra("distributor", voucher.getDistributer());
-                                            i.putExtra("date", voucher.getDate());
-                                            i.putExtra("energyKWh", voucher.getEnergyKWh());
-                                            i.putExtra("amount", voucher.getAmount());
-                                            i.putExtra("vatNumber", voucher.getVATNumber());
-                                            i.putExtra("meterNumber", voucher.getMeterNumber());
-                                            i.putExtra("tokTech", voucher.getTokenTech());
-                                            i.putExtra("alg", voucher.getAlg());
-                                            i.putExtra("sgc", voucher.getSGC());
-                                            i.putExtra("krn", voucher.getKrn());
-                                            i.putExtra("ti", voucher.getTI());
-                                            i.putExtra("terminal", voucher.getTerminalID());
-                                            i.putExtra("client", voucher.getClientID());
-                                            i.putExtra("description", voucher.getDescription());
-                                            i.putExtra("address", voucher.getAddress());
-                                            i.putExtra("receipt", voucher.getReceiptNumber());
-                                            i.putExtra("balance", voucher.getBalance());
-                                            i.putExtra("header", "CREDIT VEND - TAX INVOICE");
-                                            startActivity(i);
+                                                Intent i = new Intent(getActivity(), ThankYouActivity.class);
+                                                i.putExtra("vouchernumber", voucher.getTokenNumber());
+                                                i.putExtra("distributor", voucher.getDistributer());
+                                                i.putExtra("date", voucher.getDate());
+
+                                                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                                                i.putExtra("dateOfPurchase", currentDateTimeString);
+                                                i.putExtra("energyKWh", voucher.getEnergyKWh());
+                                                i.putExtra("amount", voucher.getAmount());
+                                                i.putExtra("vatNumber", voucher.getVATNumber());
+                                                i.putExtra("meterNumber", voucher.getMeterNumber());
+                                                i.putExtra("tokTech", voucher.getTokenTech());
+                                                i.putExtra("alg", voucher.getAlg());
+                                                i.putExtra("sgc", voucher.getSGC());
+                                                i.putExtra("krn", voucher.getKrn());
+                                                i.putExtra("ti", voucher.getTI());
+                                                i.putExtra("terminal", voucher.getTerminalID());
+                                                i.putExtra("client", voucher.getClientID());
+                                                i.putExtra("description", voucher.getDescription());
+                                                i.putExtra("address", voucher.getAddress());
+                                                i.putExtra("fbetoken", voucher.getFBEtoken());
+                                                i.putExtra("fbekwh", voucher.getFBEKwh());
+                                                i.putExtra("receipt", voucher.getReceiptNumber());
+                                                i.putExtra("balance", voucher.getBalance());
+                                                i.putExtra("header", "CREDIT VEND - TAX INVOICE");
+                                                startActivity(i);
+                                            } else {
+
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                                                builder
+                                                        .setMessage("Something went wrong, please check if voucher was issued for " + itemMeterNumber.getText() + " for R" + itemAmount.getText() + "?")
+                                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int id) {
+
+                                                                Intent i = new Intent(getActivity(), TransactionHistoryActivity.class);
+                                                                startActivity(i);
+                                                            }
+                                                        }).show();
+                                            }
                                         }
 
                                     }

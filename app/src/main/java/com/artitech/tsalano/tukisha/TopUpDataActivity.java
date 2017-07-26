@@ -32,10 +32,10 @@ import cz.msebera.android.httpclient.Header;
 
 public class TopUpDataActivity extends AppCompatActivity {
 
+    TukishaApplication tukishaApplication;
     private TextView mToolbarTitleTextView, itemCellNumber, itemTitle;
     private Toolbar toolbar;
     private Button goHome, sendSMSButton;
-
     private String agentid, productcode, producttype;
     private Context context;
 
@@ -43,6 +43,8 @@ public class TopUpDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        tukishaApplication = (TukishaApplication) getApplication();
 
         setContentView(R.layout.activity_topupdata);
 
@@ -157,14 +159,34 @@ public class TopUpDataActivity extends AppCompatActivity {
 
                                     progressDialog.dismiss();
 
-                                    Intent i = new Intent(TopUpDataActivity.this, AirtimeThankYouActivity.class);
-                                    i.putExtra("vouchernumber", voucher.getVoucher());
-                                    i.putExtra("operator", voucher.getOperator());
-                                    i.putExtra("date", voucher.getDate());
-                                    i.putExtra("amount", voucher.getAmount());
-                                    i.putExtra("instructions", voucher.getInstructions());
-                                    i.putExtra("balance", voucher.getBalance());
-                                    startActivity(i);
+                                    //Update Balance
+                                    if (voucher.getBalance() != null) {
+                                        if (!voucher.getBalance().isEmpty())
+                                            tukishaApplication.setBalance("R" + voucher.getBalance());
+
+                                        Intent i = new Intent(TopUpDataActivity.this, AirtimeThankYouActivity.class);
+                                        i.putExtra("vouchernumber", voucher.getVoucher());
+                                        i.putExtra("operator", voucher.getOperator());
+                                        i.putExtra("date", voucher.getDate());
+                                        i.putExtra("amount", voucher.getAmount());
+                                        i.putExtra("instructions", voucher.getInstructions());
+                                        i.putExtra("balance", voucher.getBalance());
+                                        startActivity(i);
+                                    } else {
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(TopUpDataActivity.this);
+
+                                        builder
+                                                .setMessage("Something went wrong, please check if voucher was issued for " + itemCellNumber.getText() + " for " + producttype + "?")
+                                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int id) {
+
+                                                        Intent i = new Intent(TopUpDataActivity.this, TransactionHistoryActivity.class);
+                                                        startActivity(i);
+                                                    }
+                                                }).show();
+                                    }
 
                                 } catch (Exception e) {
                                     Log.d("airtime error: ", e.toString());

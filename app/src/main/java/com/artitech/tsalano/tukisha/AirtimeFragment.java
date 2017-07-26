@@ -164,18 +164,36 @@ public class AirtimeFragment extends Fragment {
                                                                     AirtimeVoucher voucher = gson.fromJson(response, AirtimeVoucher.class);
                                                                     Log.d("airtime: ", voucher.getVoucher());
 
-                                                                    tukishaApplication.setBalance(voucher.getBalance());
-
                                                                     progressDialog.dismiss();
 
-                                                                    Intent i = new Intent(getActivity(), AirtimeThankYouActivity.class);
-                                                                    i.putExtra("vouchernumber", voucher.getVoucher());
-                                                                    i.putExtra("operator", voucher.getOperator());
-                                                                    i.putExtra("date", voucher.getDate());
-                                                                    i.putExtra("amount", voucher.getAmount());
-                                                                    i.putExtra("instructions", voucher.getInstructions());
-                                                                    i.putExtra("balance", voucher.getBalance());
-                                                                    startActivity(i);
+                                                                    if (voucher.getBalance() != null) {
+                                                                        if (!voucher.getBalance().isEmpty())
+                                                                            tukishaApplication.setBalance(voucher.getBalance());
+
+
+                                                                        Intent i = new Intent(getActivity(), AirtimeThankYouActivity.class);
+                                                                        i.putExtra("vouchernumber", voucher.getVoucher());
+                                                                        i.putExtra("operator", voucher.getOperator());
+                                                                        i.putExtra("date", voucher.getDate());
+                                                                        i.putExtra("amount", voucher.getAmount());
+                                                                        i.putExtra("instructions", voucher.getInstructions());
+                                                                        i.putExtra("balance", voucher.getBalance());
+                                                                        startActivity(i);
+                                                                    } else {
+
+                                                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                                                                        builder
+                                                                                .setMessage("Something went wrong, please check if voucher was issued for " + category + " for " + model.getName() + "?")
+                                                                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                                    @Override
+                                                                                    public void onClick(DialogInterface dialog, int id) {
+
+                                                                                        Intent i = new Intent(getActivity(), TransactionHistoryActivity.class);
+                                                                                        startActivity(i);
+                                                                                    }
+                                                                                }).show();
+                                                                    }
 
                                                                 } catch (Exception e) {
                                                                     Log.d("airtime: ", e.getMessage());

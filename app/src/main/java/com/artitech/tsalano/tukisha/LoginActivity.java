@@ -41,16 +41,15 @@ import static android.os.Build.VERSION_CODES;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    TukishaApplication tukishaApplication;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
     private AgentModel agent = null;
-
     // UI references.
     private EditText mAgentidView;
     private EditText mPasswordView;
-
     private View mProgressView;
     private View mLoginFormView;
 
@@ -60,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mAgentidView = (EditText) findViewById(R.id.agentid);
+
+        tukishaApplication = (TukishaApplication) getApplication();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -324,10 +325,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
 
+                    tukishaApplication.setBalance(agent.getAgentBalance());
+                    tukishaApplication.setAgentID(mAgentId);
+
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    i.putExtra("balance", agent.getAgentBalance());
+                    i.putExtra("balance", tukishaApplication.getBalance());
                     i.putExtra("status", agent.getStatus());
-                    i.putExtra("agentid", mAgentId);
+                    i.putExtra("agentid", tukishaApplication.getAgentID());
                     startActivity(i);
                     finish();
 
