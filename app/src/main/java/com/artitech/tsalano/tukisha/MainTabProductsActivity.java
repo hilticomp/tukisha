@@ -24,7 +24,7 @@ import java.util.List;
  * Created by Tsheko on 01-June-17.
  */
 
-public class AirtimeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainTabProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
@@ -100,7 +100,7 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
 
         if (id == R.id.nav_scan) {
 
-            Intent serverIntent = new Intent(AirtimeActivity.this, DeviceListActivity.class);
+            Intent serverIntent = new Intent(MainTabProductsActivity.this, DeviceListActivity.class);
             startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 
         } else if (id == R.id.nav_callcentre) {
@@ -111,12 +111,12 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
 
         } else if (id == R.id.nav_cash_mini_statement) {
 
-            Intent i = new Intent(AirtimeActivity.this, CashMiniStatementActivity.class);
+            Intent i = new Intent(MainTabProductsActivity.this, CashMiniStatementActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_transactionHistory) {
 
-            Intent i = new Intent(AirtimeActivity.this, TransactionHistoryActivity.class);
+            Intent i = new Intent(MainTabProductsActivity.this, TransactionHistoryActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_send) {
@@ -159,33 +159,25 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
                /* PAWAN IMPORTANT: Whatever the name you gave it in firebase the names here
                  should be the same in this below cases which are in green color.*/
 
-                case "Vodacom":
+                case "Buy":
 
-                    return vodacom[position];
+                    //BuyActivity buy = new BuyActivity();
+                    //return buy;
 
-                case "MTN":
+                case "Pay Account":
 
-                    return mtn[position];
+                    //PayActivity pay = new PayActivity();
+                    //return pay;
 
-                case "Cell C":
+                case "Products":
 
-                    return cellc[position];
+                    //RewardsActivity rewards = new RewardsActivity();
+                    //return rewards;
 
-                case "Virgin Mobile":
+                case "Rewards":
 
-                    return virginmobile[position];
-
-                case "Telkom Mobile":
-
-                    return telkom[position];
-
-                case "Neotel":
-
-                    return neotel[position];
-
-                case "Other":
-
-                    return neotel[position];
+                    //ProductsActivity product = new ProductsActivity();
+                    //return product;
 
 
                 default:
