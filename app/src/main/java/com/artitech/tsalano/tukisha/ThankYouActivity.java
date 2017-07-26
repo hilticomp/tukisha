@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Lenovo on 10-May-17.
+ * Created by Tsheko on 10-May-17.
  */
 
 public class ThankYouActivity extends AppCompatActivity {
