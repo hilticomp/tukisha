@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_toolbar"
+            android:layout_height="20dp"
+            android:layout_width="match_parent" />
+
+        <ViewFlipper
+            android:id="@+id/flipper1"
+            android:background="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp"
+            android:inAnimation="@android:anim/fade_in"
+            android:outAnimation="@android:anim/fade_out"
+            android:autoStart="true"
+            android:flipInterval="4000">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/banner1" />
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/banner4" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/banner5" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/banner6" />
+        </ViewFlipper>
+
+        <View
+            android:id="@+id/horizontalLine"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_alignBottom="@+id/imageView20"
+            android:background="#999999"/>
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:gravity="center_horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="Pay DSTV Account"
+            android:textColor="@color/holo_gray_dark"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="149dp">
+
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/item_customernumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView11"
+                android:layout_alignBottom="@+id/textView11"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/customersurname"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:hint="Customer  Number"
+                android:inputType="number"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_accountnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/item_customernumber"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+
+                android:freezesText="true"
+                android:hint="Account Number"
+                android:inputType="number"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_initials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/item_accountnumber"
+                android:layout_below="@+id/item_accountnumber"
+                android:layout_gravity="center_horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:hint="Customer Initials"
+                android:inputType="number"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_Surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/customersurname"
+                android:layout_alignBottom="@+id/customersurname"
+                android:layout_alignStart="@+id/item_initials"
+                android:layout_gravity="center_horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:hint="Customer Surname"
+                android:inputType="number"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/item_amountdue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/item_cellnumber"
+                android:layout_below="@+id/item_cellnumber"
+                android:layout_gravity="center_horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:hint="Amount due"
+                android:inputType="number"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/item_cellnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/item_Surname"
+                android:layout_below="@+id/item_Surname"
+                android:layout_gravity="center_horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:hint="Customer Cellphone"
+                android:inputType="number"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textinitials"
+                android:layout_alignParentStart="true"
+                android:text="Account Number "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textinitials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/customersurname"
+                android:layout_alignParentStart="true"
+                android:text="Customer Initials "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/customersurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/item_initials"
+                android:text="Customer Surname"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/account"
+                android:layout_alignParentStart="true"
+                android:text="Customer Number "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView14"
+                android:text="Amount due"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/customersurname"
+                android:text="Cellphone"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="23dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="0dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/item_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:gravity="center_horizontal"
+
+                android:hint="Amount Tendered "
+                android:inputType="number"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:minWidth="70dp"
+                android:scrollHorizontally="true"
+                android:text=""
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/errormessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:gravity="center_horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:minWidth="70dp"
+                android:scrollHorizontally="true"
+                android:text=""
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/payDSTVButton"
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:layout_margin="5dp"
+            android:background="@color/blue"
+            android:text="process Transaction"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/gohome"
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:layout_above="@+id/btnGetMoreResults"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/blue"
+            android:text="go home"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:text="Traiding  Balance : 24.00  |  Cash Back : 100.00"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+</RelativeLayout>

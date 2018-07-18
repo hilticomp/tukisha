@@ -22,6 +22,7 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="View Transaction History" />
 
+
         <item
             android:id="@+id/nav_callcentre"
             android:icon="@drawable/ic_menu_phone"
@@ -33,9 +34,19 @@
         <menu>
 
             <item
+                android:id="@+id/nav_monthlyComission"
+                android:icon="@drawable/ic_menu_money"
+                android:title="View Monthly Commission " />
+
+            <item
                 android:id="@+id/nav_cash_mini_statement"
                 android:icon="@drawable/ic_menu_money"
                 android:title="Cash Up Mini Statement" />
+
+            <item
+                android:id="@+id/nav_transactionHistory_summary"
+                android:icon="@drawable/ic_menu_money"
+                android:title="Transactions Summary" />
         </menu>
     </item>
 
@@ -46,6 +57,8 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send A Message" />
+
+
         </menu>
     </item>
 

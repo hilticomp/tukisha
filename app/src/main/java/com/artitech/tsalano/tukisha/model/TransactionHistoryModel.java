@@ -15,6 +15,17 @@ public class TransactionHistoryModel {
     public String Provider;
     public String messageID;
 
+
+    public TransactionHistoryModel(String customerName, String voucherNumber, String dateProcessed, String amount,String productType, String provider)
+    {
+        this.customerName = customerName;
+        this.voucherNumber = voucherNumber;
+        this.dateProcessed = dateProcessed;
+        this.amount = amount;
+        this.productType = productType;
+        this.Provider = provider;
+    }
+
     public String getCustomerID() {
         return customerID;
     }

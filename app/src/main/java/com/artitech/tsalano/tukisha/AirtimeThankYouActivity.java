@@ -21,7 +21,7 @@ import java.util.Date;
 
 public class AirtimeThankYouActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView mToolbarTitleTextView, itemVoucher, itemOperator, itemDate, itemAmount, itemInstructions;
+    private TextView mToolbarTitleTextView, itemVoucher, itemOperator, itemDate, itemAmount, itemInstructions, itemAgent;
     private Toolbar toolbar;
     private Button goHome;
     private String vouchernumber,operator,date,amount,instructions,balance;
@@ -59,6 +59,11 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
         itemInstructions = (TextView)findViewById(R.id.instructions);
         itemInstructions.setText(instructions);
 
+        itemAgent = (TextView)findViewById(R.id.agent);
+        itemAgent.setText("Agent ID : "+ tukishaApplication.getAgentID());
+
+
+
         printButton = (Button)findViewById(R.id.printButton);
         printButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +76,8 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
                 tukishaApplication.SendDataString(String.format("%s\n\n\n",amount));
 
                 tukishaApplication.SendDataString(String.format("%s\n\n\n",instructions));
+
+                tukishaApplication.SendDataString(String.format("Agent:%s\n\n\n",tukishaApplication.getAgentID()));
 
                 tukishaApplication.SendDataString("Date\n");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

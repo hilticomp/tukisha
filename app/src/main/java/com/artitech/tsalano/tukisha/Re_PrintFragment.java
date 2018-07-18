@@ -140,19 +140,19 @@ public class Re_PrintFragment extends Fragment {
                         }
 
                         Gson gson = new Gson();
-                        VoucherModel[] voucherModels = gson.fromJson(response, VoucherModel[].class);
+                       VoucherModel[] electricityVoucherModels = gson.fromJson(response,VoucherModel[].class);
 
-                        if (voucherModels.length > 0) {
+                        if (electricityVoucherModels.length > 0) {
 
                             listItems = new ArrayList<VoucherModel>();
 
-                            for (int i = 0; i < voucherModels.length; i++) {
+                            for (int i = 0; i < electricityVoucherModels.length; i++) {
 
-                                listItems.add(voucherModels[i]);
+                                listItems.add(electricityVoucherModels[i]);
 
                             }
 
-                            ElectricityListAdapter adapter = new ElectricityListAdapter(getActivity(), R.layout.list_transaction_layout, R.id.item_ProductType, listItems);
+                            ListAdapterR adapter = new ListAdapterR(getActivity(), R.layout.list_transaction_layout, R.id.item_ProductType, listItems);
 
                             transactionListView.setAdapter(adapter);
 
@@ -185,6 +185,11 @@ public class Re_PrintFragment extends Fragment {
                                     i.putExtra("description", voucher.getDescription());
                                     i.putExtra("address", voucher.getAddress());
                                     i.putExtra("receipt", voucher.getReceiptNumber());
+
+                                    i.putExtra("fbetoken", voucher.getFBEtoken());
+                                    i.putExtra("fbekwh", voucher.getFBEKwh());
+                                    i.putExtra("fbeamount", voucher.getBalance());
+
                                     i.putExtra("balance", tukishaApplication.getBalance());
                                     i.putExtra("header", "TAX INVOICE (COPY) WARNING, THIS IS A REPRINT");
                                     startActivity(i);

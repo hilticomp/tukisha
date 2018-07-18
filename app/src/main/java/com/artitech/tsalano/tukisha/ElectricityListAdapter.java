@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.artitech.tsalano.tukisha.model.VoucherModel;
+import com.artitech.tsalano.tukisha.model.ElectricityVoucherModel;
 
 import java.util.ArrayList;
 
@@ -18,18 +18,17 @@ import java.util.ArrayList;
  */
 
 
-public class ElectricityListAdapter extends ArrayAdapter<VoucherModel> {
+public class ElectricityListAdapter extends ArrayAdapter<ElectricityVoucherModel> {
 
     int vg;
 
-    ArrayList<VoucherModel> list;
+    ArrayList<ElectricityVoucherModel> list;
 
     Context context;
 
-    public ElectricityListAdapter(Context context, int vg, int id, ArrayList<VoucherModel> list) {
+    public ElectricityListAdapter(Context context, int vg, int id, ArrayList<ElectricityVoucherModel> list) {
 
         super(context, vg, id, list);
-
         this.context = context;
 
         this.vg = vg;
@@ -60,15 +59,15 @@ public class ElectricityListAdapter extends ArrayAdapter<VoucherModel> {
 
             item_VoucherNumber.setText(list.get(position).getTokenNumber());
 
-            item_DateProcessed.setText(list.get(position).getDatePurchased());
+            item_DateProcessed.setText(list.get(position).getProcessedDate());
 
-            item_Amount.setText("R" + list.get(position).getAmount());
+            item_Amount.setText(list.get(position).getTokenAmount());
 
-            item_ProductType.setText(list.get(position).getMeterNumber());
+            item_ProductType.setText(list.get(position).getProductType());
 
-            item_ReceiptNumber.setText(list.get(position).getReceiptNumber());
+            item_ReceiptNumber.setText(list.get(position).getMeterNumber());
 
-            int drawableResourceId = getContext().getResources().getIdentifier("eskom_main_logo", "drawable", getContext().getPackageName());
+            int drawableResourceId = getContext().getResources().getIdentifier("eskom", "drawable", getContext().getPackageName());
 
             thumbnail.setImageResource(drawableResourceId);
 

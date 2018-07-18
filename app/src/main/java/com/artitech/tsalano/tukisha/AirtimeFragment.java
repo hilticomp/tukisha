@@ -189,7 +189,7 @@ public class AirtimeFragment extends Fragment {
                                                                                     @Override
                                                                                     public void onClick(DialogInterface dialog, int id) {
 
-                                                                                        Intent i = new Intent(getActivity(), TransactionHistoryActivity.class);
+                                                                                        Intent i = new Intent(getActivity(), TelcoTransactionHistoryActivity.class);
                                                                                         startActivity(i);
                                                                                     }
                                                                                 }).show();
@@ -222,7 +222,7 @@ public class AirtimeFragment extends Fragment {
                                                                                 @Override
                                                                                 public void onClick(DialogInterface dialog, int id) {
 
-                                                                                    Intent i = new Intent(getActivity(), TransactionHistoryActivity.class);
+                                                                                    Intent i = new Intent(getActivity(), TelcoTransactionHistoryActivity.class);
                                                                                     startActivity(i);
                                                                                 }
                                                                             }).show();
@@ -236,7 +236,7 @@ public class AirtimeFragment extends Fragment {
                                                                             .setPositiveButton("Technical error message", new DialogInterface.OnClickListener() {
                                                                                 @Override
                                                                                 public void onClick(DialogInterface dialog, int id) {
-                                                                                    Intent i = new Intent(getActivity(), TransactionHistoryActivity.class);
+                                                                                    Intent i = new Intent(getActivity(), TelcoTransactionHistoryActivity.class);
                                                                                     startActivity(i);
                                                                                 }
                                                                             });
@@ -267,6 +267,7 @@ public class AirtimeFragment extends Fragment {
 
         mRecycler.setAdapter(mAdapter);
     }
+
 }
 
 

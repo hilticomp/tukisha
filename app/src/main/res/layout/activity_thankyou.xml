@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:gravity="center_horizontal">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
@@ -177,6 +184,7 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp" />
 
+
             <TextView
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
@@ -197,7 +205,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignStart="@+id/item_Date"
-                android:layout_below="@+id/item_Date"
                 android:ellipsize="marquee"
                 android:focusable="false"
                 android:freezesText="true"
@@ -206,7 +213,9 @@
                 android:singleLine="true"
                 android:text="Date"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:layout_below="@+id/item_Date" />
+
 
 
         </RelativeLayout>
@@ -253,6 +262,26 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/item_Agent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:text="Agent ID"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="26dp" />
+
+            <TextView
                 android:id="@+id/purchaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -267,6 +296,22 @@
                 android:text="Purchase Date"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/agentName"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:freezesText="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Agent Name"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="10sp"
+                android:layout_alignStart="@+id/item_Agent"
+                android:layout_below="@+id/item_Agent" />
 
 
         </RelativeLayout>
@@ -374,8 +419,6 @@
                 android:id="@+id/clientID"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_alignStart="@+id/item_ClientID"
-                android:layout_below="@+id/item_ClientID"
                 android:ellipsize="marquee"
                 android:focusable="false"
                 android:freezesText="true"
@@ -384,7 +427,9 @@
                 android:singleLine="true"
                 android:text="ClientID"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_below="@+id/item_receiptno"
+                android:layout_alignStart="@+id/item_ClientID" />
 
             <TextView
                 android:id="@+id/terminalID"
@@ -840,7 +885,8 @@
             android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/item_FBEDescription"
@@ -896,7 +942,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/amount"
+                android:text="Token Amount"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp" />
 
@@ -912,7 +958,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/description"
+                android:text="FBE Token"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />
 
@@ -968,7 +1014,7 @@
         android:visibility="gone" />
 
 
-    <TextView
+<!--    <TextView
         android:id="@+id/item_FBEAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -982,7 +1028,7 @@
         android:text="FBE Amount"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
-        android:visibility="gone" />
+        android:visibility="gone" />-->
 
 
     <Button
@@ -1018,4 +1064,6 @@
 
 
 </LinearLayout>
+
+</ScrollView>
 

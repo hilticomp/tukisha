@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class BuyActivity extends Fragment {
 
@@ -29,6 +30,7 @@ public class BuyActivity extends Fragment {
     private static final String CHINESE = "GBK";
     private static String balance, agentid;
     TukishaApplication tukishaApplication;
+    private Button btnGetMoreResults;
 
     @Override
     public void onStart() {
@@ -88,6 +90,10 @@ public class BuyActivity extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_buy, container, false);
 
+        btnGetMoreResults = (Button)view.findViewById(R.id.btnGetMoreResults);
+        btnGetMoreResults.setText("Trading Balance : " + tukishaApplication.getBalance());
+
+
         final View eskom = view.findViewById(R.id.ivEskom);
         eskom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +123,7 @@ public class BuyActivity extends Fragment {
                 startActivity(i);
             }
         });
-        final View cellc = view.findViewById(R.id.ivCellC);
+        final View cellc = view.findViewById(R.id.ivCellc);
         cellc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,12 +148,69 @@ public class BuyActivity extends Fragment {
                 Intent i = new Intent(getActivity(), AirtimeActivity.class);
                 i.putExtra("from_main_activity", "Telkom Mobile");
                 startActivity(i);
+
+            }
+        });
+
+        final View unipin = view.findViewById(R.id.unipin);
+        unipin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), UnipinDenominationActivity.class);
+                startActivity(i);
+            }
+        });
+
+        final View municipality = view.findViewById(R.id.ivMunicipality);
+       municipality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MunicipalityActivity.class);
+                startActivity(i);
+            }
+        });
+
+        final View DSTV = view.findViewById(R.id.ivDSTV);
+        DSTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), DSTVActivity.class);
+                startActivity(i);
+            }
+        });
+
+        final View ideal = view.findViewById(R.id.ideal);
+        ideal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ElectricityMunicipalityActivity.class);
+                i.putExtra("prevend", 988);
+                i.putExtra("tokennumber", 0);
+                i.putExtra("name", "Ideal Prepaid");
+                i.putExtra("endpoint", "https://munipoiapp.herokuapp.com/api/selfservice/idealelectricity?meternumber=");
+                startActivity(i);
+            }
+        });
+
+        final View protea = view.findViewById(R.id.protea);
+        protea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ElectricityMunicipalityActivity.class);
+                i.putExtra("prevend", 111);
+                i.putExtra("tokennumber", 0);
+                i.putExtra("name", "Protea Metering");
+                i.putExtra("endpoint", "https://munipoiapp.herokuapp.com/api/selfservice/proteaelectricity?meternumber=");
+                startActivity(i);
             }
         });
 
 
         // Inflate the layout for this fragment
         return view;
+
+
+
 
     }
 }

@@ -182,7 +182,7 @@ public class TopUpDataActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int id) {
 
-                                                        Intent i = new Intent(TopUpDataActivity.this, TransactionHistoryActivity.class);
+                                                        Intent i = new Intent(TopUpDataActivity.this, TelcoTransactionHistoryActivity.class);
                                                         startActivity(i);
                                                     }
                                                 }).show();
@@ -216,7 +216,7 @@ public class TopUpDataActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int id) {
 
-                                                    Intent i = new Intent(TopUpDataActivity.this, TransactionHistoryActivity.class);
+                                                    Intent i = new Intent(TopUpDataActivity.this, TelcoTransactionHistoryActivity.class);
                                                     startActivity(i);
                                                 }
                                             }).show();
@@ -230,7 +230,7 @@ public class TopUpDataActivity extends AppCompatActivity {
                                             .setPositiveButton("Technical error message", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int id) {
-                                                    Intent i = new Intent(TopUpDataActivity.this, TransactionHistoryActivity.class);
+                                                    Intent i = new Intent(TopUpDataActivity.this, TelcoTransactionHistoryActivity.class);
                                                     startActivity(i);
                                                 }
                                             });

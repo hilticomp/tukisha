@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ViewFlipper
+        android:id="@+id/flipper1"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:autoStart="true"
+        android:background="#fff"
+        android:flipInterval="4000"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right"
+        android:paddingTop="0dp"
+        tools:ignore="Suspicious0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription=""
+            app:srcCompat="@drawable/banner1" />
+
+
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner4" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner5" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner4" />
+    </ViewFlipper>
+
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/flipper1"
+        android:background="#999999"/>
+
+
+
+    <ImageView
+        android:id="@+id/ivDSTV"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/dstv"
+        android:layout_below="@+id/horizontalLine"
+        android:layout_alignParentStart="true" />
+
+
+    <ImageView
+        android:id="@+id/ivTrafficFines"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/traffic_fines"
+        android:layout_alignTop="@+id/ivPayAccount"
+        android:layout_centerHorizontal="true" />
+
+<!--    <ImageView
+        android:id="@+id/ivShopOnline"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/shop_online"
+        android:layout_alignTop="@+id/ivTrafficFines"
+        android:layout_alignParentEnd="true" />-->
+
+    <Button
+        android:id="@+id/gohome"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:background="@color/blue"
+        android:text="go home"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@+id/BalanceResults"
+        android:layout_centerHorizontal="true" />
+
+    <Button android:id="@+id/BalanceResults"
+        style="?android:textAppearanceSmall"
+        android:background="@color/blue"
+        android:layout_height="35sp"
+        android:layout_width="match_parent"
+        android:text="Trading Balance : R24.00 "
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true" />
+
+
+
+</RelativeLayout>

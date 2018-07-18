@@ -8,13 +8,13 @@ public class VoucherModel {
 
     private String meternumber,receiptHeader,distributer,vatNumber,operatorMessage,custMessage,
             address, date, dateOfPurchase, receiptNumber, clientID, terminalID, meterNumber, tokTech, alg, sgc, krn, ti, description,
-            energyKWh, amount, tokenNumber, FBEtoken, FBEKwh, balance;
+            energyKWh, amount, tokenNumber, FBEtoken, FBEKwh, balance, totalCashBack;
 
 
     public VoucherModel(String receiptHeader, String distributer, String vatNumber, String operatorMessage,
                         String custMessage, String address, String date, String dateOfPurchase, String receiptNumber, String clientID, String terminalID,
                         String meterNumber, String tokTech, String alg, String sgc, String krn, String ti, String description,
-                        String energyKWh, String amount, String tokenNumber, String FBEtoken, String FBEKwh, String balance) {
+                        String energyKWh, String amount, String tokenNumber, String FBEtoken, String FBEKwh, String balance, String totalCashBack) {
 
         this.meternumber = meterNumber;
         this.distributer = distributer;
@@ -42,6 +42,7 @@ public class VoucherModel {
         this.FBEtoken = FBEtoken;
         this.FBEKwh = FBEKwh;
         this.balance = balance;
+        this.totalCashBack = totalCashBack;
 
     }
 
@@ -144,6 +145,10 @@ public class VoucherModel {
 
     public String getBalance() {
         return balance;
+    }
+
+    public String getTotalCashBack() {
+        return totalCashBack;
     }
 
     @Override

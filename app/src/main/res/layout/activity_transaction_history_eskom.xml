@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <ViewFlipper
+        android:id="@+id/flipper1"
+        android:background="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out"
+        android:autoStart="true"
+        android:flipInterval="4000">
+
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner1" />
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner4" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner5" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner6" />
+    </ViewFlipper>
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/flipper1"
+        android:background="#999999" />
+
+
+
+    <EditText
+        android:id="@+id/startDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/flipper1"
+        android:layout_marginTop="18dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="date"
+        android:tag="startdate"
+        android:text="Please Select Start Date"
+        android:textAlignment="center" />
+
+
+    <EditText
+        android:id="@+id/endDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/startDateEditText"
+        android:layout_marginTop="21dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="date"
+        android:tag="enddate"
+        android:text="Please Select End Date"
+        android:textAlignment="center" />
+
+
+    <ListView
+        android:id="@+id/listv"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:layout_above="@+id/gohome"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/endDateEditText">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/gohome"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:text="Go home"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/layout_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="30dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/image_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/text_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_empty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="No transactions found!"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_empty_hints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_empty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Please Select a Date above to view transaction history"
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

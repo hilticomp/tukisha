@@ -114,7 +114,6 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
 
-
         // Check for a valid email address.
         if (TextUtils.isEmpty(agentid)) {
             mAgentidView.setError(getString(R.string.error_field_required));
@@ -251,7 +250,19 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("Error", response.getStatusLine().toString());
 
 
-            } catch (final IOException e) {
+            } catch (final java.net.UnknownHostException e) {
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        mPasswordView.setError("Please check the following \n1. If network is active and  \n2. Data is enabled");
+                        mPasswordView.requestFocus();
+                    }
+                });
+
+                isValid = false;
+
+            }
+            catch (final IOException e) {
 
                 runOnUiThread(new Runnable() {
                     public void run() {
@@ -298,7 +309,7 @@ public class LoginActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         // update your UI component here.
-                        mPasswordView.setError("Something went horrible wrong. Please restart the app.");
+                        mPasswordView.setError("Something went horribly wrong. Please restart the app.");
                         mPasswordView.requestFocus();
                     }
                 });

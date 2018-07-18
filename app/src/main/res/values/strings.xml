@@ -43,6 +43,7 @@
     <string name="energy_kwh">Energy KWh</string>
     <string name="no_category_found">No category found</string>
     <string name="credit_vend_tax_invoice">CREDIT VEND - TAX INVOICE</string>
+    <string name="header_namedstv">TUKISHA PREAID (PTY)LDT MULTICHOICE</string>
     <string name="action_printertest">Printer Test</string>
     <string name="title_activity_transaction_history">Transaction History</string>
     <string name="transaction_history_title">Transaction History</string>

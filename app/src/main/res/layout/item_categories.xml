@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/invite_cardView"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="match_parent"
     android:layout_marginBottom="4dp"
+    android:orientation="horizontal"
     app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="15dp">
 
@@ -17,8 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/categories_imageView"
@@ -32,8 +32,8 @@
             android:id="@+id/userDetails_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/categories_imageView"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_below="@+id/categories_imageView">
         </LinearLayout>
 
         <TextView

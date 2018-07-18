@@ -1,90 +1,191 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#FFF"
+    android:orientation="vertical"
+    android:weightSum="4">
 
-    <ImageView
-        android:id="@+id/imageView20"
-        android:layout_width="171pt"
-        android:layout_height="70pt"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="top"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/t_bunnerd" />
+    <ViewFlipper
+        android:id="@+id/flipper1"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:autoStart="true"
+        android:background="#fff"
+        android:flipInterval="4000"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right"
+        android:paddingTop="0dp"
+        tools:ignore="Suspicious0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
-    <ImageView
-        android:id="@+id/ivVirgin"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/ivMunicipality"
-        android:layout_marginStart="11dp"
-        app:srcCompat="@drawable/virgin_mobile" />
-
-    <ImageView
-        android:id="@+id/ivPrasa"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/ivTelkom"
-        android:layout_marginBottom="28dp"
-        app:srcCompat="@drawable/prasa" />
-
-    <ImageView
-        android:id="@+id/ivMunicipality"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/ivPrasa"
-        android:layout_alignEnd="@+id/ivPrasa"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="14dp"
-        app:srcCompat="@drawable/municipality" />
-
-    <ImageView
-        android:id="@+id/ivCellC"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/ivTelkom"
-        app:srcCompat="@drawable/cell_c" />
-
-    <ImageView
-        android:id="@+id/ivTelkom"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignStart="@+id/ivVodacom"
-        android:layout_alignTop="@+id/ivMunicipality"
-        app:srcCompat="@drawable/telkom" />
-
-    <ImageView
-        android:id="@+id/ivEskom"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView20"
-        android:layout_marginTop="27dp"
-        app:srcCompat="@drawable/eskom" />
-
-    <ImageView
-        android:id="@+id/ivVodacom"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/ivEskom"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/vodacom" />
-
-    <ImageView
-        android:id="@+id/ivMTN"
-        android:layout_width="90dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/ivVodacom"
-        app:srcCompat="@drawable/mtn_main_logo" />
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription=""
+            app:srcCompat="@drawable/banner1" />
 
 
-</RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner4" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner5" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/banner4" />
+    </ViewFlipper>
+
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#999999" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="650dp"
+            android:background="#fff">
+
+            <ImageView
+                android:id="@+id/ivVirgin"
+                android:layout_width="105dp"
+                android:layout_height="140dp"
+                android:layout_below="@+id/ivVodacom"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/virgin_mobile" />
+
+            <ImageView
+                android:id="@+id/ivEskom"
+                android:layout_width="100dp"
+                android:layout_height="135dp"
+                android:layout_above="@+id/ivVirgin"
+                android:layout_alignEnd="@+id/ivTelkom"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/eskom" />
+
+            <ImageView
+                android:id="@+id/ivTelkom"
+                android:layout_width="105dp"
+                android:layout_height="140dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ivEskom"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/telkom" />
+
+            <ImageView
+                android:id="@+id/unipin"
+                android:layout_width="100dp"
+                android:layout_height="135dp"
+                android:layout_alignBottom="@+id/ivMunicipality"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/unipin" />
+
+            <ImageView
+                android:id="@+id/ideal"
+                android:layout_width="100dp"
+                android:layout_height="135dp"
+                android:layout_alignStart="@+id/ivCellc"
+                android:layout_alignTop="@+id/unipin"
+                app:srcCompat="@drawable/ideal" />
+
+            <ImageView
+                android:id="@+id/protea"
+                android:layout_width="100dp"
+                android:layout_height="135dp"
+                android:layout_alignEnd="@+id/ivMunicipality"
+                android:layout_below="@+id/ivMunicipality"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/proteametering" />
+
+            <!--        <ImageView
+            android:id="@+id/ivPrasa"
+            android:layout_width="105dp"
+            android:layout_height="140dp"
+            android:paddingTop="5dp"
+            app:srcCompat="@drawable/prasa"
+            android:layout_below="@+id/ivVirgin"
+            android:layout_centerHorizontal="true" />-->
+
+            <ImageView
+                android:id="@+id/ivVodacom"
+                android:layout_width="105dp"
+                android:layout_height="140dp"
+                android:layout_alignParentTop="true"
+
+                android:layout_centerHorizontal="true"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/vodacom" />
+
+            <ImageView
+                android:id="@+id/ivCellc"
+                android:layout_width="105dp"
+                android:layout_height="140dp"
+                android:layout_above="@+id/ivMunicipality"
+                android:layout_alignParentEnd="true"
+                android:paddingRight="5dp"
+                app:srcCompat="@drawable/cell_c" />
+
+            <ImageView
+                android:id="@+id/ivMTN"
+                android:layout_width="105dp"
+                android:layout_height="140dp"
+                android:layout_alignParentEnd="true"
+                android:paddingRight="5dp"
+                app:srcCompat="@drawable/mtn_main_logo" />
+
+            <ImageView
+                android:id="@+id/ivMunicipality"
+                android:layout_width="105dp"
+                android:layout_height="140dp"
+                android:layout_alignStart="@+id/ivVirgin"
+                android:layout_below="@+id/ivVirgin"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/municipality" />
+
+            <ImageView
+                android:id="@+id/ivDSTV"
+                android:layout_width="100dp"
+                android:layout_height="140dp"
+                android:layout_alignTop="@+id/protea"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/dstv" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnGetMoreResults"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:background="@color/blue"
+        android:text="Trading Balance : R24.00"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.artitech.tsalano.tukisha.R;
 import com.artitech.tsalano.tukisha.model.CategoryTypesModel;
+import com.artitech.tsalano.tukisha.model.MunicipalityModel;
+import com.artitech.tsalano.tukisha.model.UnipinModel;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -44,6 +46,29 @@ public class CategoryTypesViewHolder extends RecyclerView.ViewHolder {
         mItemName.setText(post.getName());
         mItemShortDesc.setText(post.getDescription());
         //mItemPrice.setText(post.getRs());
+        mTopView.setOnClickListener(relativeLayoutClickListener);
+        Picasso.with(context).load(post.getImgurl()).fit().centerCrop().into(mProductThumb);
+
+    }
+
+    public void bindtoSelectedMunicipalities(Context context, MunicipalityModel post,
+                                      View.OnClickListener relativeLayoutClickListener) {
+
+
+        mItemName.setText(post.getName());
+        mItemShortDesc.setText(post.getName());
+        //mItemPrice.setText(post.getRs());
+        mTopView.setOnClickListener(relativeLayoutClickListener);
+        Picasso.with(context).load(post.getImgurl()).fit().centerCrop().into(mProductThumb);
+
+    }
+
+    public void bindtoSelectedDenomination(Context context, UnipinModel post,
+                                             View.OnClickListener relativeLayoutClickListener) {
+
+
+        mItemName.setText(post.getName());
+        mItemShortDesc.setText(post.getName());
         mTopView.setOnClickListener(relativeLayoutClickListener);
         Picasso.with(context).load(post.getImgurl()).fit().centerCrop().into(mProductThumb);
 

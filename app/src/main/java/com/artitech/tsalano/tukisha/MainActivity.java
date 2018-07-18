@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_ENABLE_BT = 2;
     private static final String CHINESE = "GBK";
     private static String balance, agentid;
+    private  int MAIN_SCREEN_LANDSCAPE = 4, MAIN_SCREEN_PORTRAIT = 2;
     TukishaApplication tukishaApplication;
     private TextView mToolbarTitleTextView;
     private RecyclerView mRecycler;
@@ -164,9 +166,27 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
 
+        int numberOfRows;
+
+        int orientation = getResources().getConfiguration().orientation;
+        switch(orientation)
+        {
+
+            case  Configuration.ORIENTATION_LANDSCAPE:
+
+                numberOfRows = MAIN_SCREEN_LANDSCAPE;
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                numberOfRows = MAIN_SCREEN_PORTRAIT;
+                break;
+
+            default:
+                numberOfRows = MAIN_SCREEN_PORTRAIT;
+                break;
+        }
 
         mRecycler.setHasFixedSize(true);
-        mManager = new GridLayoutManager(this, 2);
+        mManager = new GridLayoutManager(this, numberOfRows);
         mManager.setReverseLayout(true);
         //mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
@@ -228,7 +248,6 @@ public class MainActivity extends AppCompatActivity
 
     private void getMyCategories() {
 
-        // myKey = new Preferences().getUserKey(MyConnectionsActivity.this);
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("categories");
         Query postsQuery = myRef;
         mAdapter = new FirebaseRecyclerAdapter<CategoriesModel, CategoriesViewHolder>
@@ -238,10 +257,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             protected void populateViewHolder(CategoriesViewHolder viewHolder,
                                               final CategoriesModel model, int position) {
-                //final DatabaseReference postRef = getRef(position);
-                //inal String friend_key = postRef.getKey();
-
-                //viewHolder.bindToResponse(MyConnectionsActivity.this, model);
 
                 if (model != null) {
                     viewHolder.bindToWorkouts(MainActivity.this, model,
@@ -254,12 +269,24 @@ public class MainActivity extends AppCompatActivity
                                     {
                                         Intent i = new Intent(MainActivity.this, ElectricityActivity.class);
                                         startActivity(i);
+
+                                    } else if (model.getName().equals("Municipality Prepaid"))
+                                    {
+                                        Intent i = new Intent(MainActivity.this, MunicipalityActivity.class);
+                                        startActivity(i);
+                                    }
+
+                                    else if (model.getName().equals("DSTV"))
+                                    {
+                                        Intent i = new Intent(MainActivity.this, DSTVActivity.class);
+                                        startActivity(i);
                                     }
                                     else {
 
                                         Intent i = new Intent(MainActivity.this, AirtimeActivity.class);
                                         i.putExtra("from_main_activity", model.getName());
                                         startActivity(i);
+
                                     }
 
 
@@ -341,9 +368,20 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(MainActivity.this, CashMiniStatementActivity.class);
             startActivity(i);
 
+        } else if (id == R.id.nav_monthlyComission) {
+
+            Intent i = new Intent(MainActivity.this, MonthlyCommissionActivity.class);
+            startActivity(i);
+
         } else if (id == R.id.nav_transactionHistory) {
 
-            Intent i = new Intent(MainActivity.this, TransactionHistoryActivity.class);
+            Intent i = new Intent(MainActivity.this, TransactionMainActivity.class);
+            startActivity(i);
+
+
+        }else if (id == R.id.nav_transactionHistory_summary) {
+
+            Intent i = new Intent(MainActivity.this, TransactionSummaryActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_send) {
@@ -404,7 +442,7 @@ public class MainActivity extends AppCompatActivity
 
         tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text("Congratulations!\n\n", CHINESE, 0, 1, 1, 0));
 
-        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text("\n\n\nYou have sucessfully created communications between your device and our bluetooth printer.\n\n\n\n\n\n", CHINESE, 0, 0, 0, 0));
+        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text("\n\n\nYou have successfully created communications between your device and our bluetooth printer.\n\n\n\n\n\n", CHINESE, 0, 0, 0, 0));
     }
 
 }

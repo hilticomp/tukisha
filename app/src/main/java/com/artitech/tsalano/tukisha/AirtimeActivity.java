@@ -116,7 +116,7 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
 
         } else if (id == R.id.nav_transactionHistory) {
 
-            Intent i = new Intent(AirtimeActivity.this, TransactionHistoryActivity.class);
+            Intent i = new Intent(AirtimeActivity.this, TelcoTransactionHistoryActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_send) {
@@ -183,9 +183,17 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
 
                     return neotel[position];
 
-                case "Other":
+                case "Municipality Prepaid":
 
                     return neotel[position];
+
+
+
+
+
+
+
+
 
 
                 default:

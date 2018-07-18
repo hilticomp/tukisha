@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:gravity="center_horizontal">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_toolbar" />
+
+
+        <TextView
+            android:id="@+id/header_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="#ffffff"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:freezesText="true"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="@string/credit_vend_tax_invoice"
+            android:textColor="#4A82EF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+
+        <LinearLayout
+            android:id="@+id/first_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/first_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_Distributor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Distributor"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/item_VATNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/distributor"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="VAT Number"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/distributor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/item_Distributor"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="distributor"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/vatnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignStart="@+id/item_VATNumber"
+                    android:layout_below="@+id/item_VATNumber"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="vat number"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/second_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/second_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Address"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/item_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/address"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Date"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/item_address"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="address"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignStart="@+id/item_Date"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Date"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="10sp"
+                    android:layout_below="@+id/item_Date" />
+
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tokenOne"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Token One"
+            android:textColor="#4A82EF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/purchasedate_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/purchasedate_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/item_PurchaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Date of Purchase"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/item_Agent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Agent ID"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="26dp" />
+
+                <TextView
+                    android:id="@+id/purchaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/item_PurchaseDate"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Purchase Date"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/agentName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Agent Name"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="10sp"
+                    android:layout_alignStart="@+id/item_Agent"
+                    android:layout_below="@+id/item_Agent" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/third_view"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/third_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_receiptno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="5dp"
+
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Receipt No"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/item_ClientID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true"
+
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/receiptno"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="ClientID"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/item_TerminalID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/clientID"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="TerminalID"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/receiptno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_receiptno"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="receiptno"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/clientID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="ClientID"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:layout_below="@+id/item_receiptno"
+                    android:layout_alignStart="@+id/item_ClientID" />
+
+                <TextView
+                    android:id="@+id/terminalID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/item_TerminalID"
+                    android:layout_below="@+id/item_TerminalID"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Terminal ID"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="10sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tokenTwo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Token Two"
+            android:textColor="#4A82EF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/fouth_view"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/fouth_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_meterNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Meter No"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/item_TokenTech"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/meterno"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Token Tech"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/item_Alg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="ALG"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/meterno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/item_meterNo"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Meter No"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tokenTech"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignStart="@+id/item_TokenTech"
+                    android:layout_below="@+id/item_TokenTech"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Token Tech"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/alg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/item_Alg"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="ALG"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/fifth_view"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/fifth_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_SGC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="SGC"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/item_KRN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/sgc"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="KRN"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/item_TI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/krn"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="TI"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/sgc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/item_SGC"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="SGC"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/krn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignStart="@+id/item_KRN"
+                    android:layout_below="@+id/item_KRN"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="KRN"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/ti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/item_TI"
+                    android:layout_below="@+id/item_TI"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="TI"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sixth_view"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:id="@+id/sixth_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Description"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/item_EnergyKWh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/description"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Energy KWh"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/item_TokenAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/energykwh"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/amount"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/item_Description"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/description"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/energykwh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignStart="@+id/item_EnergyKWh"
+                    android:layout_below="@+id/item_EnergyKWh"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/energy_kwh"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tokenAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignStart="@+id/item_TokenAmount"
+                    android:layout_below="@+id/item_TokenAmount"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Token Amount"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tokenThree"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Token Three"
+            android:textColor="#4A82EF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/fbeTokenNumberLabel"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="FREE BASIC ELECTRICITY"
+            android:textColor="@android:color/background_dark"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:id="@+id/seventh_view"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:visibility="gone">
+
+
+            <RelativeLayout
+                android:id="@+id/seventh_icon_detail"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/item_FBEDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="Description"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/item_FBEEnergyKWh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/fbedescription"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Energy KWh"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/item_FBETokenAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/fbeenergykwh"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Token Amount"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/fbedescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/item_FBEDescription"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="FBE Token"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fbeenergykwh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignStart="@+id/item_FBEEnergyKWh"
+                    android:layout_below="@+id/item_FBEEnergyKWh"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/energy_kwh"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fbetokenAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignStart="@+id/item_FBETokenAmount"
+                    android:layout_below="@+id/item_FBETokenAmount"
+                    android:ellipsize="marquee"
+                    android:focusable="false"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Token Amount"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/fbeTokenNumber"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="FBE Token Number"
+            android:textColor="#4A82EF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+
+        <!--    <TextView
+                android:id="@+id/item_FBEAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="15dp"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:freezesText="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:text="FBE Amount"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:visibility="gone" />-->
+
+
+        <Button
+            android:id="@+id/sendSMSButton"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="5dp"
+            android:background="#4A82EF"
+            android:paddingBottom="5dp"
+            android:text="Send Voucher via SMS"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/printButton"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="5dp"
+            android:background="#4A82EF"
+            android:paddingBottom="5dp"
+            android:text="Print Voucher"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/thankyouHomeButton"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#4A82EF"
+            android:text="Click here to go to home page"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</ScrollView>
+

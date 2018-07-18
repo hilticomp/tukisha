@@ -33,11 +33,32 @@
         <activity android:name=".ElectricityActivity" />
         <activity android:name=".ThankYouActivity" />
         <activity android:name=".AirtimeThankYouActivity" />
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|screenLayout|orientation|screenSize" />
         <activity android:name=".SendSMSActivity" />
         <activity android:name=".DeviceListActivity" />
-        <activity android:name=".TransactionHistoryActivity" />
+        <activity android:name=".TelcoTransactionHistoryActivity" />
+        <activity android:name=".DstvTransactionHistory" />
         <activity android:name=".CashMiniStatementActivity" />
+        <activity android:name=".MunicipalityActivity" />
+        <activity android:name=".MainTabProductActivity" />
+        <activity android:name=".ElectricityMunicipalityActivity" />
+        <activity android:name=".PayDSTVActivity" />
+        <activity android:name=".DSTVActivity" />
+        <activity android:name=".ThankYouMuniEkurhuleniActivity" />
+        <activity android:name=".UnipinDenominationActivity" />
+        <activity android:name=".MonthlyCommissionActivity" />
+        <activity android:name=".Re_PrintActivity" />
+        <activity android:name=".ThankYouActivityDstv" />
+        <activity android:name=".TransactionMainActivity" />
+        <activity android:name=".Re_PrintMunicipalityFragment" />
+        <activity android:name=".MunicipalityTransactionHistoryActivity" />
+        <activity android:name=".TransactionHistoryActivityEskom" />
+        <activity android:name=".TransactionSummaryActivity" />
+        <activity android:name=".PrintDSTV" />
+        <activity android:name=".MeterChanger" />
+        <activity android:name=".KeyChangePrint"></activity>
     </application>
 
 </manifest>

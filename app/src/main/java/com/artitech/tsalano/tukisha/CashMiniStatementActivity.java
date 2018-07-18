@@ -1,5 +1,6 @@
 package com.artitech.tsalano.tukisha;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.artitech.tsalano.tukisha.errorhandling.BackendDownException;
@@ -20,10 +23,12 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -31,18 +36,29 @@ import cz.msebera.android.httpclient.Header;
  * Created by solly on 2017/06/29.
  */
 
-public class CashMiniStatementActivity extends AppCompatActivity {
+public class CashMiniStatementActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private static final String CHINESE = "GBK";
+
     protected static ArrayList<TransactionHistoryModel> listItems;
     private TukishaApplication tukishaApplication;
     private Toolbar toolbar;
+    private EditText startDateEditText,endDateEditText;
 
-    private TextView mToolbarTitleTextView, cashElectricityTotalTextView, cashTelcoTotalTextView, cashTotalTextView;
+    private TextView mToolbarTitleTextView, cashElectricityTotalTextView, cashTelcoTotalTextView, cashTotalTextView, DSTVTotal, municipalityaTotal;
 
     private Button printButton;
 
     private CashMiniStatementModel cashMiniStatementModel;
+
+
+
+    private TextView cashMunicipalityTotalTextView,DSTVTextWiew, titleTextView;
+
+    private Button  goHome;
+
+
+    private Calendar myCalendar = Calendar.getInstance();
 
     public static String getDateTimeString() {
 
@@ -63,9 +79,10 @@ public class CashMiniStatementActivity extends AppCompatActivity {
 
         tukishaApplication = (TukishaApplication) getApplication();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        startDateEditText = (EditText) findViewById(R.id.startDateEditText);
+        startDateEditText.setTag("startdate");
+        startDateEditText.setOnClickListener(this);
 
         configureToolbar();
 
@@ -75,12 +92,15 @@ public class CashMiniStatementActivity extends AppCompatActivity {
         }
 
         cashElectricityTotalTextView = (TextView) findViewById(R.id.cashElectricityTotal);
-
+        DSTVTotal = (TextView) findViewById(R.id.dstvtotal);
+        municipalityaTotal = (TextView) findViewById(R.id.municipality);
         cashTelcoTotalTextView = (TextView) findViewById(R.id.cashTelcoTotal);
-
         cashTotalTextView = (TextView) findViewById(R.id.cashTotal);
 
-        loadCashMiniStatementHistory();
+        titleTextView = (TextView) findViewById(R.id.titleTextView);
+
+        loadCashMiniStatementHistory(getDateTimeString());
+
 
         printButton = (Button) findViewById(R.id.printButton);
         printButton.setOnClickListener(new View.OnClickListener() {
@@ -92,11 +112,15 @@ public class CashMiniStatementActivity extends AppCompatActivity {
                 tukishaApplication.SendDataByte(PrinterCommand.POS_Set_Cut(1));
                 tukishaApplication.SendDataByte(PrinterCommand.POS_Set_PrtInit());
 
-                tukishaApplication.SendDataString(String.format("Total Sales for Electricity is : R %s\n\n\n", cashMiniStatementModel.getElectricityTotal()));
+                tukishaApplication.SendDataString(String.format("Total Sales for Electricity is :  %s\n\n\n", cashMiniStatementModel.getElectricityTotal()));
 
-                tukishaApplication.SendDataString(String.format("Total Sales for Telco is : R %s\n\n\n", cashMiniStatementModel.getTelcoTotal()));
+                tukishaApplication.SendDataString(String.format("Total Sales for Telco is :  %s\n\n\n", cashMiniStatementModel.getTelcoTotal()));
 
-                tukishaApplication.SendDataString(String.format("Total Sales for the day is : R %s\n\n\n", cashMiniStatementModel.getTotal()));
+                tukishaApplication.SendDataString(String.format("Total Sales for DSTV is :  %s\n\n\n", cashMiniStatementModel.getDstvtotal()));
+
+                tukishaApplication.SendDataString(String.format("Total Sales for Municipality is :  %s\n\n\n", cashMiniStatementModel.getMunicipalityTotal()));
+
+                tukishaApplication.SendDataString(String.format("Total Sales for the day is :  %s\n\n\n", cashMiniStatementModel.getTotal()));
 
                 tukishaApplication.SendDataString("Date\n");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -106,8 +130,44 @@ public class CashMiniStatementActivity extends AppCompatActivity {
                 tukishaApplication.SendDataString(String.format("Agent ID:%s\n\n\n", tukishaApplication.getAgentID()));
 
 
+
             }
         });
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        new DatePickerDialog(CashMiniStatementActivity.this, this, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear,
+                          int dayOfMonth) {
+        myCalendar.set(Calendar.YEAR, year);
+        myCalendar.set(Calendar.MONTH, monthOfYear);
+        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        startDateEditText.setText(sdf.format(myCalendar.getTime()));
+       /*titleTextView.setText("Total Sales for " + sdf.format(myCalendar.getTime()));*/
+
+        try {
+
+            Date startdate = sdf.parse(startDateEditText.getText().toString());
+            //String currentDateandTime = sdf.format(new Date());
+
+            loadCashMiniStatementHistory(sdf.format(startdate.getTime()));
+
+        } catch (ParseException e) {
+
+        }
 
     }
 
@@ -142,7 +202,7 @@ public class CashMiniStatementActivity extends AppCompatActivity {
 
     }
 
-    private void loadCashMiniStatementHistory() {
+    private void loadCashMiniStatementHistory(String currentDate) {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -152,8 +212,9 @@ public class CashMiniStatementActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
+
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("https://munipoiapp.herokuapp.com/api/app/cashbackministatement?customerId=" + tukishaApplication.getAgentID() + "&date=" + getDateTimeString(), new AsyncHttpResponseHandler() {
+        client.get("https://munipoiapp.herokuapp.com/api/app/cashbackministatement?customerId=" + tukishaApplication.getAgentID() + "&date=" + currentDate, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int status, Header[] headers, byte[] responseBody) {
                 try {
@@ -173,8 +234,9 @@ public class CashMiniStatementActivity extends AppCompatActivity {
                         cashMiniStatementModel = gson.fromJson(response, CashMiniStatementModel.class);
                         cashElectricityTotalTextView.setText("Electricity Total : " + cashMiniStatementModel.getElectricityTotal());
                         cashTelcoTotalTextView.setText("Telco Total : " + cashMiniStatementModel.getTelcoTotal());
+                        DSTVTotal.setText("DSTV Total  : " + cashMiniStatementModel.getDstvtotal());
+                        municipalityaTotal.setText("Municipality Total  : " + cashMiniStatementModel.getMunicipalityTotal());
                         cashTotalTextView.setText("Total : " + cashMiniStatementModel.getTotal());
-
                     }
 
                 } catch (final IOException e) {

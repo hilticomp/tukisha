@@ -193,7 +193,7 @@ public class PurchaseCreditNoteFragment extends Fragment {
                                                 i.putExtra("fbetoken", voucher.getFBEtoken());
                                                 i.putExtra("fbekwh", voucher.getFBEKwh());
                                                 i.putExtra("receipt", voucher.getReceiptNumber());
-                                                i.putExtra("balance", voucher.getBalance());
+                                                i.putExtra("fbeamount", voucher.getBalance());
                                                 i.putExtra("header", "CREDIT VEND - TAX INVOICE");
                                                 startActivity(i);
                                             } else {
@@ -206,7 +206,7 @@ public class PurchaseCreditNoteFragment extends Fragment {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int id) {
 
-                                                                Intent i = new Intent(getActivity(), TransactionHistoryActivity.class);
+                                                                Intent i = new Intent(getActivity(), TelcoTransactionHistoryActivity.class);
                                                                 startActivity(i);
                                                             }
                                                         }).show();
