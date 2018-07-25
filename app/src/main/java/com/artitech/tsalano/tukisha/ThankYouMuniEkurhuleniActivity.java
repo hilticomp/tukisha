@@ -86,7 +86,7 @@ public class ThankYouMuniEkurhuleniActivity extends AppCompatActivity {
         itemDate.setText(date);
 
         itemEnergyKWh = (TextView)findViewById(R.id.energykwh);
-        itemEnergyKWh.setText(energyKWh + "KWh");
+        itemEnergyKWh.setText(energyKWh +"KWh");
 
         itemAmount = (TextView)findViewById(R.id.tokenAmount);
         itemAmount.setText("R"+ amount);

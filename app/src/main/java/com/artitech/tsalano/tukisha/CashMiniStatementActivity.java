@@ -72,9 +72,7 @@ public class CashMiniStatementActivity extends AppCompatActivity implements View
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_cash_mini_statement);
 
         tukishaApplication = (TukishaApplication) getApplication();
