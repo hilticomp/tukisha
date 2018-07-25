@@ -38,8 +38,6 @@ public class DSTVActivity extends AppCompatActivity {
 
         tukishaApplication = (TukishaApplication) getApplicationContext();
 
-        Button btnGetMoreResults = (Button) findViewById(R.id.btnGetMoreResults);
-        btnGetMoreResults.setText("Trading Balance :  " + tukishaApplication.getBalance());
 
         Button registerButton = (Button) findViewById(R.id.gohome);
 
@@ -50,6 +48,12 @@ public class DSTVActivity extends AppCompatActivity {
                 startActivity(loginActivity);
             }
         });
+
+        Button btnGetMoreResults = (Button) findViewById(R.id.btnGetMoreResults);
+        btnGetMoreResults.setText("Trading Balance :  " + tukishaApplication.getBalance());
+
+
+
 
         //editAccNumber=(EditText) findViewById(R.id.editAccNumber);
         editCustomerID =(EditText) findViewById(R.id.editCustomerID);

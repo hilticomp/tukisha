@@ -55,8 +55,7 @@ public class PayDSTVActivity extends AppCompatActivity {
         context = this;
 
         tukishaApplication = (TukishaApplication) getApplicationContext();
-        Button btnGetMoreResults = (Button)findViewById(R.id.btn);
-        btnGetMoreResults.setText("Trading Balance :  " + tukishaApplication.getBalance());
+
 
         final View gohome = findViewById(R.id.gohome);
         gohome.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +65,10 @@ public class PayDSTVActivity extends AppCompatActivity {
                 startActivity(int9);
             }
         });
+
+        Button btnGetMoreResults = (Button)findViewById(R.id.btn);
+        btnGetMoreResults.setText("Trading Balance :  " + tukishaApplication.getBalance());
+
 
         Bundle bundle = getIntent().getExtras();
         customerid = bundle.getString("customernumber");
@@ -238,9 +241,6 @@ public class PayDSTVActivity extends AppCompatActivity {
                                                             CustomInfo.putExtra("accountnumber",accountnumber);
                                                             CustomInfo.putExtra("amountdue",amountdue);
                                                             CustomInfo.putExtra("cellNumber",cellNumber);
-
-
-
 
                                                             startActivity(CustomInfo);
 

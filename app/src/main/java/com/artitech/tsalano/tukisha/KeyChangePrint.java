@@ -24,25 +24,23 @@ public class KeyChangePrint extends AppCompatActivity {
     private static final String CHINESE = "GBK";
     private TextView mToolbarTitleTextView;
 
-    private TextView itemVoucher;
-    private TextView itemDistributor;
-    private TextView itemDate;
+    private TextView tokenOne;
+    private TextView terminal;
+    private TextView client;
+    private TextView tokentwo;
+    private TextView tokenthree;
+    private TextView  newSgc;
+    private TextView  address;
+    private TextView  newKrn;
+    private TextView  newTi;
+    private TextView  oldSgc;
+    private TextView  oldKrn;
+    private TextView  oldTi;
+    private TextView  maxPwrKw;
+    private TextView operatorMessage;
+    private TextView date;
     private TextView ItemAgentName;
-    private TextView itemPurchaseDate;
-    private TextView itemEnergyKWh;
-    private TextView itemAmount;
-    private TextView itemClientID;
-    private TextView itemTerminalID;
-    private TextView itemVATNumber;
     private TextView itemMeterNumber;
-    private TextView itemTokTech;
-    private TextView itemALG;
-    private TextView itemSGC;
-    private TextView itemKRN;
-    private TextView itemTI;
-    private TextView itemDescription;
-    private TextView itemAddress;
-    private TextView itemReceipt;
     private TextView itemFBEToken,itemFBEKwh, itemFBEAmount;
     private TextView item_Date;
     private TextView fbeTokenNumberLabel;
@@ -50,8 +48,8 @@ public class KeyChangePrint extends AppCompatActivity {
     private Toolbar toolbar;
     private Button goHome,sendSMSButton,printButton;
     private LinearLayout seventhview;
-    private String vouchernumber,distributor,date,energyKWh,amount,client,terminal,vatNumber,meterNumber,
-            tokTech, alg, sgc, krn, ti, description, address, receipt, fbetoken, fbekwh, fbeamount, header, dateOfPurchase;
+    private String TokenOne,Tokentwo,Tokenthree,NewSgc,NewKrn,NewTi,OldSgc,OldKrn,OldTi,MaxPwrKw,OperatorMessage,Address,Date,Client,Terminal,meterNumber,
+            tokTech, alg,fbetoken, fbekwh, fbeamount, header;
     private Boolean isReprint = false;
     private TukishaApplication tukishaApplication;
 
@@ -64,24 +62,25 @@ public class KeyChangePrint extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        vouchernumber = bundle.getString("vouchernumber");
-        distributor = bundle.getString("distributor");
-        date = bundle.getString("date");
-        dateOfPurchase = bundle.getString("dateOfPurchase");
-        energyKWh = bundle.getString("energyKWh");
-        amount = bundle.getString("amount");
-        vatNumber = bundle.getString("vatNumber");
+        TokenOne = bundle.getString("tokenOne");
+        OperatorMessage = bundle.getString("operatorMessage");
+        Address = bundle.getString("address");
+        Terminal = bundle.getString("terminal");
+        OperatorMessage = bundle.getString("operatorMessage");
+        Tokentwo = bundle.getString("tokenTwo");
+        Tokenthree = bundle.getString("tokenThree");
+        NewSgc = bundle.getString("newSgc");
+        NewKrn = bundle.getString("newKrne");
+        NewTi = bundle.getString("newTi");
+        OldSgc = bundle.getString("oldSgc");
+        OldKrn = bundle.getString("oldKrn");
+        OldTi = bundle.getString("oldTi");
+        MaxPwrKw = bundle.getString("maxPwrKw");
+        Client = bundle.getString("client");
+        Date = bundle.getString("date");
         meterNumber = bundle.getString("meterNumber");
         tokTech = bundle.getString("tokTech");
         alg = bundle.getString("alg");
-        sgc = bundle.getString("sgc");
-        krn = bundle.getString("krn");
-        ti = bundle.getString("ti");
-        client = bundle.getString("client");
-        terminal = bundle.getString("terminal");
-        description = bundle.getString("description");
-        address = bundle.getString("address");
-        receipt = bundle.getString("receipt");
         header = bundle.getString("header");
 
         if (header.contains("REPRINT"))
@@ -103,17 +102,60 @@ public class KeyChangePrint extends AppCompatActivity {
         headerNameLabel = (TextView) findViewById(R.id.header_name);
         headerNameLabel.setText(header);
 
-        itemVoucher = (TextView)findViewById(R.id.tokenNumber);
-        itemVoucher.setText(vouchernumber);
+        tokenOne = (TextView)findViewById(R.id.tokenOne);
+        tokenOne.setText(TokenOne);
 
-        itemVATNumber = (TextView)findViewById(R.id.vatnumber);
-        itemVATNumber.setText(vatNumber);
+        tokentwo = (TextView)findViewById(R.id.tokenTwo);
+        tokentwo.setText(Tokentwo);
 
-        itemDistributor = (TextView)findViewById(R.id.distributor);
-        itemDistributor.setText(distributor);
+        tokenthree = (TextView)findViewById(R.id.tokenThree);
+        tokenthree.setText(Tokenthree);
 
-        itemDate = (TextView)findViewById(R.id.date);
-        itemDate.setText(date);
+        operatorMessage = (TextView)findViewById(R.id.distributor);
+        operatorMessage.setText(OperatorMessage);
+
+        newSgc = (TextView)findViewById(R.id.sgc);
+        newSgc.setText(NewSgc);
+
+        newKrn = (TextView)findViewById(R.id.krn);
+        newKrn.setText(NewKrn);
+
+        newTi = (TextView)findViewById(R.id.ti);
+        newTi.setText(NewTi);
+
+        oldTi = (TextView)findViewById(R.id.alg);
+        oldTi.setText(OldTi);
+
+        oldSgc = (TextView)findViewById(R.id.tokenTech);
+        oldSgc.setText(OldSgc);
+
+        oldKrn = (TextView)findViewById(R.id.meterno);
+        oldKrn.setText(OldKrn);
+
+        maxPwrKw = (TextView)findViewById(R.id.maxpwrkw);
+        maxPwrKw.setText(MaxPwrKw);
+
+        address = (TextView)findViewById(R.id.address);
+        address.setText(Address);
+
+        date = (TextView)findViewById(R.id.date);
+        date.setText(Date);
+
+        client = (TextView)findViewById(R.id.clientID);
+        client.setText(Client);
+
+
+        terminal = (TextView)findViewById(R.id.terminalID);
+        terminal.setText(Terminal);
+
+
+        itemMeterNumber = (TextView)findViewById(R.id.receiptno);
+        itemMeterNumber.setText(meterNumber);
+
+        operatorMessage = (TextView)findViewById(R.id.distributor);
+        operatorMessage.setText(OperatorMessage);
+
+
 
         ItemAgentName  = (TextView)findViewById(R.id.agentName);
         ItemAgentName.setText(tukishaApplication.getAgentID());
@@ -123,47 +165,9 @@ public class KeyChangePrint extends AppCompatActivity {
         if (isReprint)
             item_Date.setText("RePrint Date");
 
-        itemPurchaseDate = (TextView) findViewById(R.id.purchaseDate);
-        itemPurchaseDate.setText(dateOfPurchase);
 
-        itemEnergyKWh = (TextView)findViewById(R.id.energykwh);
-        itemEnergyKWh.setText(energyKWh + "KWh");
 
-        itemAmount = (TextView)findViewById(R.id.tokenAmount);
-        itemAmount.setText("R"+ amount);
 
-        itemClientID = (TextView)findViewById(R.id.clientID);
-        itemClientID.setText(client);
-
-        itemTerminalID = (TextView)findViewById(R.id.terminalID);
-        itemTerminalID.setText(terminal);
-
-        itemMeterNumber = (TextView)findViewById(R.id.meterno);
-        itemMeterNumber.setText(meterNumber);
-
-        itemTokTech = (TextView)findViewById(R.id.tokenTech);
-        itemTokTech.setText(tokTech);
-
-        itemALG = (TextView)findViewById(R.id.alg);
-        itemALG.setText(alg);
-
-        itemSGC = (TextView)findViewById(R.id.sgc);
-        itemSGC.setText(sgc);
-
-        itemKRN = (TextView)findViewById(R.id.krn);
-        itemKRN.setText(krn);
-
-        itemTI = (TextView)findViewById(R.id.ti);
-        itemTI.setText(ti);
-
-        itemDescription = (TextView)findViewById(R.id.description);
-        itemDescription.setText(description);
-
-        itemAddress = (TextView)findViewById(R.id.address);
-        itemAddress.setText(address);
-
-        itemReceipt = (TextView)findViewById(R.id.receiptno);
-        itemReceipt.setText(receipt);
 
         //PurchaseToken with FBE
         if (fbetoken != null) {
@@ -209,9 +213,7 @@ public class KeyChangePrint extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent i = new Intent(KeyChangePrint.this, SendSMSActivity.class);
-                i.putExtra("vouchernumber", vouchernumber);
-                i.putExtra("energyKWh", itemEnergyKWh.getText());
-                i.putExtra("amount", itemAmount.getText());
+                i.putExtra("tokenOne", TokenOne);
                 i.putExtra("flag", "Electricity");
 
                 //PurchaseToken with FBE
@@ -270,7 +272,7 @@ public class KeyChangePrint extends AppCompatActivity {
         tukishaApplication.SendDataString(String.format("           %s          \n\n",header));
 
         tukishaApplication.SendDataString("Distributor                         VAT Number\n"); //48
-        tukishaApplication.SendDataString(String.format("%s                        %s\n\n",distributor,vatNumber));
+        tukishaApplication.SendDataString(String.format("%s                        %s\n\n",tokenOne,tokenthree));
 
         tukishaApplication.SendDataString("Address\n");
         tukishaApplication.SendDataString(String.format("%s\n\n",address));
@@ -285,21 +287,21 @@ public class KeyChangePrint extends AppCompatActivity {
         else
             tukishaApplication.SendDataString("Date of Purchase                      Agent ID\n");
 
-        tukishaApplication.SendDataString(String.format("%s                          %s\n\n",dateOfPurchase,tukishaApplication.getAgentID()));
+        tukishaApplication.SendDataString(String.format("%s                          %s\n\n",tokenOne,tukishaApplication.getAgentID()));
 
         tukishaApplication.SendDataString("Receipt No      ClientID           Terminal ID\n"); //48
-        tukishaApplication.SendDataString(String.format("%s %s      %s\n\n",receipt,client,terminal));
+        tukishaApplication.SendDataString(String.format("%s %s      %s\n\n",tokenOne,client,Terminal));
 
         tukishaApplication.SendDataString("Meter No        Token Tech         ALG\n"); //48
         tukishaApplication.SendDataString(String.format("%s     %s                 %s\n\n",meterNumber,tokTech,alg));
 
         tukishaApplication.SendDataString("SGC             KRN                TI\n"); //48
-        tukishaApplication.SendDataString(String.format("%s          %s                  %s\n\n",sgc,krn,ti));
+        tukishaApplication.SendDataString(String.format("%s          %s                  %s\n\n",tokenOne,tokenOne,tokenOne));
 
         tukishaApplication.SendDataString("Description     Energy Kwh         Amount\n"); //48
-        tukishaApplication.SendDataString(String.format("%s     %sKwh             R%s\n\n",description,energyKWh,amount));
+        tukishaApplication.SendDataString(String.format("%s     %sKwh             R%s\n\n",tokenthree,tokenOne,tokenthree));
 
-        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format(" %s \n\n\n\n",vouchernumber), CHINESE, 0, 1, 1, 0));
+        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format(" %s \n\n\n\n",TokenOne), CHINESE, 0, 1, 1, 0));
 
         //PurchaseToken with FBE
         if (fbetoken != null) {

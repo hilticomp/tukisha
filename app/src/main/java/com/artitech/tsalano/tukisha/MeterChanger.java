@@ -103,7 +103,7 @@ public class MeterChanger extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder
-                        .setMessage("Are you sure want to buy electricity for meter " + itemMeterNumber.getText() + "?")
+                        .setMessage("Are you sure want a Key Change for this Meter No " + itemMeterNumber.getText() + "?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -139,14 +139,6 @@ public class MeterChanger extends Fragment {
         return meterNumber.length() >= 4 && meterNumber.length() <= 13;
     }
 
-    private boolean isAmountValid(String amount) {
-
-        if (amount.length() > 0)
-            return Integer.parseInt(amount) >= 10;
-        else
-            return false;
-
-    }
 
     private boolean isSGCValid(String sgc) {
 
@@ -178,7 +170,7 @@ public class MeterChanger extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder
-                .setMessage("Are you sure you want a Key Changer For " + itemMeterNumber.getText() + "?")
+                .setMessage("Press Yes For Key Change on this Meter Number " + itemMeterNumber.getText() + "")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -194,7 +186,7 @@ public class MeterChanger extends Fragment {
                         //Log.d("Link", "http://munipoiapp.herokuapp.com/api/app/electricityblind?meternumber=" + itemMeterNumber.getText().toString() + "&amount=" + itemAmount.getText().toString() + "&agentid=" + tukishaApplication.getAgentID() + "&sgc=" + itemSGC.getText().toString() + "&krn=" + itemKRN.getText().toString() + "&alg=" + itemAlg.getText().toString() + "&ti=" + itemTI.getText().toString() + "&tt=" + itemTT.getText().toString());
 
                         AsyncHttpClient client = new AsyncHttpClient();
-                        client.get("http://munipoiapp.herokuapp.com/api/app/electricityblind?meternumber=" + itemMeterNumber.getText().toString() + "&agentid=" + tukishaApplication.getAgentID() + "&sgc=" + itemSGC.getText().toString() + "&krn=" + itemKRN.getText().toString() + "&alg=" + itemAlg.getText().toString() + "&ti=" + itemTI.getText().toString() + "&tt=" + itemTT.getText().toString(), new AsyncHttpResponseHandler() {
+                        client.get("http://munipoiapp.herokuapp.com/api/app/updatemeterkey?agentid=" + tukishaApplication.getAgentID() + "&meternumber=" + itemMeterNumber.getText().toString() +  "&sgc=" + itemSGC.getText().toString() + "&krn=" + itemKRN.getText().toString() + "&ti=" + itemAlg.getText().toString() + "&at=" + itemTI.getText().toString() + "&tt=" + itemTT.getText().toString(), new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int status, Header[] headers, byte[] responseBody) {
                                 try {
@@ -220,30 +212,18 @@ public class MeterChanger extends Fragment {
                                             tukishaApplication.setBalance(voucher.getBalance());
 
                                             Intent i = new Intent(getActivity(), KeyChangePrint.class);
-                                            i.putExtra("vouchernumber", voucher.getTokenNumber());
-                                            i.putExtra("distributor", voucher.getDistributer());
-                                            i.putExtra("date", voucher.getDate());
 
+                                            i.putExtra("header", "KEY CHANGE");
+                                            i.putExtra("address", voucher.getAddress());
+                                            i.putExtra("date", voucher.getDate());
                                             String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                                            i.putExtra("dateOfPurchase", currentDateTimeString);
-                                            i.putExtra("energyKWh", voucher.getEnergyKWh());
-                                            i.putExtra("amount", voucher.getAmount());
-                                            i.putExtra("vatNumber", voucher.getVATNumber());
+
+                                            i.putExtra("client", voucher.getClientID());
+                                            i.putExtra("operatorMessage", voucher.getOperatorMessage());
+                                            i.putExtra("terminal", voucher.getTerminalID());
                                             i.putExtra("meterNumber", voucher.getMeterNumber());
                                             i.putExtra("tokTech", voucher.getTokenTech());
                                             i.putExtra("alg", voucher.getAlg());
-                                            i.putExtra("sgc", voucher.getSGC());
-                                            i.putExtra("krn", voucher.getKrn());
-                                            i.putExtra("ti", voucher.getTI());
-                                            i.putExtra("terminal", voucher.getTerminalID());
-                                            i.putExtra("client", voucher.getClientID());
-                                            i.putExtra("description", voucher.getDescription());
-                                            i.putExtra("address", voucher.getAddress());
-                                            i.putExtra("receipt", voucher.getReceiptNumber());
-                                            i.putExtra("balance", voucher.getBalance());
-                                            i.putExtra("header", "CREDIT VEND - TAX INVOICE");
-
-
                                             i.putExtra("newSgc", voucher.getNewSgc());
                                             i.putExtra("newKrn", voucher.getNewKrn());
                                             i.putExtra("newTi", voucher.getNewTi());
@@ -253,6 +233,7 @@ public class MeterChanger extends Fragment {
                                             i.putExtra("tokenOne", voucher.getTokenOne());
                                             i.putExtra("tokenTwo", voucher.getTokenTwo());
                                             i.putExtra("tokenThree", voucher.getTokenThree());
+                                            i.putExtra("description", voucher.getDescription());
                                             i.putExtra("maxPwrKw", voucher.getMaxPwrKw());
 
                                             startActivity(i);
