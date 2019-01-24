@@ -4,7 +4,7 @@ package com.artitech.tsalano.tukisha.model;
  * Created by solly on 2017/09/30.
  */
 
-public class UnipinModel {
+public class UnipinModel extends CategoryTypesModel {
 
     private String name;
     private String imgurl;

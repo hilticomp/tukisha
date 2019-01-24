@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.artitech.tsalano.tukisha.printer.PrinterCommand;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by Rammala on 10-May-17.
  */
@@ -70,7 +67,7 @@ public class KeyChangePrint extends AppCompatActivity {
         Tokentwo = bundle.getString("tokenTwo");
         Tokenthree = bundle.getString("tokenThree");
         NewSgc = bundle.getString("newSgc");
-        NewKrn = bundle.getString("newKrne");
+        NewKrn = bundle.getString("newKrn");
         NewTi = bundle.getString("newTi");
         OldSgc = bundle.getString("oldSgc");
         OldKrn = bundle.getString("oldKrn");
@@ -269,39 +266,43 @@ public class KeyChangePrint extends AppCompatActivity {
     private void PrintVoucher()
     {
 
-        tukishaApplication.SendDataString(String.format("           %s          \n\n",header));
+        tukishaApplication.SendDataString(String.format("                 %s          \n\n",header));
 
-        tukishaApplication.SendDataString("Distributor                         VAT Number\n"); //48
-        tukishaApplication.SendDataString(String.format("%s                        %s\n\n",tokenOne,tokenthree));
+        tukishaApplication.SendDataString("Operator Massage                  \n"); //48
+        tukishaApplication.SendDataString(String.format("%s                 \n",OperatorMessage));
 
         tukishaApplication.SendDataString("Address\n");
-        tukishaApplication.SendDataString(String.format("%s\n\n",address));
+        tukishaApplication.SendDataString(String.format("%s\n\n",Address));
 
-        tukishaApplication.SendDataString("Date\n");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentDateandTime = sdf.format(new Date());
-        tukishaApplication.SendDataString(currentDateandTime +"\n\n");
+        tukishaApplication.SendDataString("                  Token One\n");
+        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format("            %s \n",TokenOne), CHINESE, 0, 0, 0, 0));
+
+        tukishaApplication.SendDataString("Date                             Agent ID \n");
+        tukishaApplication.SendDataString(String.format("%s         %s      \n\n",Date.substring(9),tukishaApplication.getAgentID()));
 
         if (isReprint)
             tukishaApplication.SendDataString("Reprint Date                          Agent ID\n");
         else
-            tukishaApplication.SendDataString("Date of Purchase                      Agent ID\n");
+        tukishaApplication.SendDataString("Meter No         ClientID           Terminal ID\n"); //48
+        tukishaApplication.SendDataString(String.format("%s    %s      %s\n\n",meterNumber,Client,Terminal));
 
-        tukishaApplication.SendDataString(String.format("%s                          %s\n\n",tokenOne,tukishaApplication.getAgentID()));
+        tukishaApplication.SendDataString("                  Token Two\n");
+        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format("            %s \n\n",Tokentwo), CHINESE, 0, 0, 0, 0));
 
-        tukishaApplication.SendDataString("Receipt No      ClientID           Terminal ID\n"); //48
-        tukishaApplication.SendDataString(String.format("%s %s      %s\n\n",tokenOne,client,Terminal));
+        tukishaApplication.SendDataString("Old KNR        Old SGC         Old TI\n"); //48
+        tukishaApplication.SendDataString(String.format("%s              %s          %s\n\n",OldKrn,OldSgc,OldTi));
 
-        tukishaApplication.SendDataString("Meter No        Token Tech         ALG\n"); //48
-        tukishaApplication.SendDataString(String.format("%s     %s                 %s\n\n",meterNumber,tokTech,alg));
+        tukishaApplication.SendDataString("New SGC        New KRN          New TI\n"); //48
+        tukishaApplication.SendDataString(String.format("%s           %s              %s\n\n",NewSgc,NewKrn,NewTi));
 
-        tukishaApplication.SendDataString("SGC             KRN                TI\n"); //48
-        tukishaApplication.SendDataString(String.format("%s          %s                  %s\n\n",tokenOne,tokenOne,tokenOne));
+        tukishaApplication.SendDataString("TokenTech      ALG               MaxPwrKw\n"); //48
+        tukishaApplication.SendDataString(String.format("%s             %s                %s\n\n",tokTech,alg,MaxPwrKw));
 
-        tukishaApplication.SendDataString("Description     Energy Kwh         Amount\n"); //48
-        tukishaApplication.SendDataString(String.format("%s     %sKwh             R%s\n\n",tokenthree,tokenOne,tokenthree));
+        tukishaApplication.SendDataString("                 Token Three\n");
+        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format("            %s \n\n\n\n",Tokenthree), CHINESE, 0, 0, 0, 0));
 
-        tukishaApplication.SendDataByte(PrinterCommand.POS_Print_Text(String.format(" %s \n\n\n\n",TokenOne), CHINESE, 0, 1, 1, 0));
+
+
 
         //PurchaseToken with FBE
         if (fbetoken != null) {

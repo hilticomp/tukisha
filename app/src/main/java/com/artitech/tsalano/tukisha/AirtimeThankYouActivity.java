@@ -25,7 +25,7 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
     private Toolbar toolbar;
     private Button goHome;
     private String vouchernumber,operator,date,amount,instructions,balance;
-    private Button sendSMSButton,printButton;
+    private Button SMSButton,PrintButton;
     private TukishaApplication tukishaApplication;
 
     @Override
@@ -64,8 +64,26 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
 
 
 
-        printButton = (Button)findViewById(R.id.printButton);
-        printButton.setOnClickListener(new View.OnClickListener() {
+        SMSButton = (Button)findViewById(R.id.sendSMSButton);
+
+        SMSButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(AirtimeThankYouActivity.this, SendSMSActivity.class);
+                i.putExtra("vouchernumber", vouchernumber);
+                i.putExtra("amount", itemAmount.getText());
+                i.putExtra("flag", "Airtime");
+                startActivity(i);
+
+            }
+        });
+
+
+
+
+        PrintButton = (Button)findViewById(R.id.printButton);
+        PrintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -87,19 +105,7 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
             }
         });
 
-        sendSMSButton = (Button)findViewById(R.id.sendSMSButton);
-        sendSMSButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent i = new Intent(AirtimeThankYouActivity.this, SendSMSActivity.class);
-                i.putExtra("vouchernumber", vouchernumber);
-                i.putExtra("amount", itemAmount.getText());
-                i.putExtra("flag", "Airtime");
-                startActivity(i);
-
-            }
-        });
 
         goHome = (Button)findViewById(R.id.thankyouHomeButton);
         goHome.setOnClickListener(new View.OnClickListener() {
@@ -115,9 +121,9 @@ public class AirtimeThankYouActivity extends AppCompatActivity implements Naviga
 
 
         if (!TextUtils.isEmpty(vouchernumber)) {
-            if (vouchernumber.length() < 13) {
-                sendSMSButton.setVisibility(View.GONE);
-                printButton.setVisibility(View.GONE);
+            if (vouchernumber.length() < 12) {
+                SMSButton.setVisibility(View.GONE);
+                PrintButton.setVisibility(View.GONE);
             }
         }
 

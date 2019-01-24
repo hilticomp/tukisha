@@ -127,7 +127,7 @@ public class MunicipalityActivity extends AppCompatActivity
         Query postsQuery = myRef;
         mAdapter = new FirebaseRecyclerAdapter<MunicipalityModel, CategoryTypesViewHolder>
                 (MunicipalityModel.class,
-                        R.layout.item_product,
+                        R.layout.item_hollywoodproduct,
                         CategoryTypesViewHolder.class, postsQuery) {
             @Override
             protected void populateViewHolder(CategoryTypesViewHolder viewHolder,

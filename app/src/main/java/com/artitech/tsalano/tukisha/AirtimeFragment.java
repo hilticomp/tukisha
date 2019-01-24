@@ -152,7 +152,9 @@ public class AirtimeFragment extends Fragment {
 
                                                         AsyncHttpClient client = new AsyncHttpClient();
                                                         client.setTimeout(20000);
-                                                        client.get("http://munipoiapp.herokuapp.com/api/app/airtime?productcode=" + model.getRs().toString() + "&agentid=" + tukishaApplication.getAgentID(), new AsyncHttpResponseHandler() {
+
+                                                        client.get("http://munipoiapp.herokuapp.com/api/app/airtime?productcode=" + model.getRs().toString() + "&agentid=" + tukishaApplication.getAgentID(), new AsyncHttpResponseHandler()
+                                                        {
                                                             @Override
                                                             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                                                                 try {

@@ -23,29 +23,12 @@
         android:flipInterval="3000">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/banner6" />
-
-        <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/banner1" />
+            android:layout_width="427dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/tukishalogo" />
 
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/banner4" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/banner5" />
     </ViewFlipper>
     <View
         android:layout_width="match_parent"

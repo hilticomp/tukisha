@@ -71,10 +71,7 @@ public class MonthlyCommissionActivity extends AppCompatActivity implements View
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_monthly_commission);
 
         tukishaApplication = (TukishaApplication) getApplication();

@@ -67,10 +67,17 @@ public class MunicipalityListAdapter extends ArrayAdapter<ElectricityVoucherMode
 
             item_ProductType.setText(list.get(position).getMeterNumber());
 
-            int drawableResourceId = getContext().getResources().getIdentifier("municipality", "drawable", getContext().getPackageName());
+            if(list.get(position).getProductType().contains("Electricity")) {
 
-            thumbnail.setImageResource(drawableResourceId);
+                int drawableResourceId = getContext().getResources().getIdentifier("eskom_main_logo", "drawable", getContext().getPackageName());
 
+                thumbnail.setImageResource(drawableResourceId);
+            }else{
+
+                int drawableResourceId = getContext().getResources().getIdentifier("municipality", "drawable", getContext().getPackageName());
+
+                thumbnail.setImageResource(drawableResourceId);
+            }
 
         } catch (Exception e) {
 

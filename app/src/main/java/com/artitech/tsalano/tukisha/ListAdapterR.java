@@ -61,7 +61,7 @@ public class ListAdapterR extends ArrayAdapter<VoucherModel> {
 
             item_VoucherNumber.setText(list.get(position).getTokenNumber());
 
-            item_DateProcessed.setText(list.get(position).getDate());
+            item_DateProcessed.setText(list.get(position).getDatePurchased());
 
             item_Amount.setText(list.get(position).getAmount());
 

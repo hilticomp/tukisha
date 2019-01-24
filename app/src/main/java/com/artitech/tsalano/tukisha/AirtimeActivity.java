@@ -29,6 +29,7 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
     private static final String CHINESE = "GBK";
+
     static CharSequence[] vodacom = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] mtn = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] cellc = new String[]{"Airtime", "Data", "SMS"};
@@ -37,6 +38,8 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
                  should be the same in this below cases which are in green color.*/
     static CharSequence[] virginmobile = new String[]{"Airtime", "Data", "SMS"};
     static CharSequence[] neotel = new String[]{"Airtime", "Data", "SMS"};
+    static CharSequence[] hollyWood = new String[]{"Airtime", "Data", "SMS"};
+
     private static String message;
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     private Toolbar toolbar;
@@ -163,6 +166,9 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
 
                     return vodacom[position];
 
+                case "HollyWood":
+                    return hollyWood [position];
+
                 case "MTN":
 
                     return mtn[position];
@@ -186,15 +192,6 @@ public class AirtimeActivity extends AppCompatActivity implements NavigationView
                 case "Municipality Prepaid":
 
                     return neotel[position];
-
-
-
-
-
-
-
-
-
 
                 default:
                     return null;

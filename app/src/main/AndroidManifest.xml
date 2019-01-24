@@ -57,7 +57,6 @@
         <activity android:name=".TransactionHistoryActivityEskom" />
         <activity android:name=".TransactionSummaryActivity" />
         <activity android:name=".PrintDSTV" />
-        <activity android:name=".MeterChanger" />
         <activity android:name=".KeyChangePrint"></activity>
     </application>
 

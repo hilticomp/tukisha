@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.artitech.tsalano.tukisha.R;
 import com.artitech.tsalano.tukisha.model.CategoryTypesModel;
 import com.artitech.tsalano.tukisha.model.MunicipalityModel;
-import com.artitech.tsalano.tukisha.model.UnipinModel;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -63,8 +62,8 @@ public class CategoryTypesViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bindtoSelectedDenomination(Context context, UnipinModel post,
-                                             View.OnClickListener relativeLayoutClickListener) {
+    public void bindtoSelectedDenomination(Context context, CategoryTypesModel post,
+                                           View.OnClickListener relativeLayoutClickListener) {
 
 
         mItemName.setText(post.getName());
@@ -73,6 +72,8 @@ public class CategoryTypesViewHolder extends RecyclerView.ViewHolder {
         Picasso.with(context).load(post.getImgurl()).fit().centerCrop().into(mProductThumb);
 
     }
+
+
 
 
 }
